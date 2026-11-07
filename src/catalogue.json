@@ -1,0 +1,370 @@
+{
+  "checked_date": "2026-11-07",
+  "noc_version": "2021 Version 1.0",
+  "summary_note": "Descriptions and skills are plain-language summaries of the official NOC main duties. Employment requirements below were copied from the official English profiles on 2026-11-07. The linked profile is the source if a posting disagrees.",
+  "promise_note": "Saving a role does not submit an application, enroll you in a course, or promise a job, a visa, a licence, or that you meet an employer's requirements.",
+  "exclusions": [
+    "Restaurant and food service",
+    "Cooking, kitchen, and bakery",
+    "Farm and agricultural employers and duties, including farm office work",
+    "Food production and processing, including NOC 95106",
+    "Fish plant work, including NOC 94142",
+    "Domestic work, house helpers, and caregivers",
+    "Marketing duties, including telemarketing"
+  ],
+  "exclusion_note": "These exclusions stay in force even when a selected NOC's official index lists a similar title. Match a future posting by its NOC 2021 code, then read the duties. An alias is only a hint when the posting has no code. An exact title match is not required, and a title match alone is not enough.",
+  "forklift_note": "CCOHS says forklift trucks should be operated only by experienced workers who are trained, certified, or licensed, and that some jurisdictions allow only a competent or authorized operator. The same page says CSA standard B335-15 (R2020) covers operator training. Rules differ by province. None of the online courses here is a forklift licence or a hands-on evaluation.",
+  "forklift_sources": [
+    {
+      "title": "CCOHS: Forklift Trucks - Professional Operator",
+      "url": "https://www.ccohs.ca/oshanswers/safety_haz/forklift/operator.html",
+      "checked_date": "2026-11-07"
+    }
+  ],
+  "licence_note": "Where a posting requires a driver's licence, that means a licence accepted for that province and that work. This tracker does not record or confirm any licence you hold.",
+  "roles": [
+    {
+      "noc": "13100",
+      "official_title": "Administrative officers",
+      "display_title": "Administrative officer / Office administrator",
+      "informal_fr": "Agent administratif / Administrateur de bureau",
+      "informal_fr_note": "Informal French label, not the official French NOC title.",
+      "also_called": [
+        "Administrative officer",
+        "Office administrator",
+        "Office manager",
+        "Office coordinator",
+        "Administrative services coordinator"
+      ],
+      "description": "Organize office procedures, priorities, and services; keep budgets and inventory records; and prepare reports.",
+      "skills": [
+        "Office procedures and prioritization",
+        "Budget and inventory tracking",
+        "Report writing",
+        "Spreadsheets",
+        "Coordination and delegation"
+      ],
+      "employment_requirements": [
+        "Completion of secondary school is required.",
+        "A university degree or college diploma in business or public administration may be required.",
+        "Experience in a senior clerical or executive secretarial position related to office administration is usually required.",
+        "Project management certification may be required by some employers."
+      ],
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements section on 2026-11-07. Employers can differ. A course below does not by itself meet these requirements.",
+      "course_ids": ["excel", "customer_service"],
+      "source_urls": [
+        "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=13100&version=2021.0"
+      ],
+      "screening_warning": ""
+    },
+    {
+      "noc": "13110",
+      "official_title": "Administrative assistants",
+      "display_title": "Administrative assistant",
+      "informal_fr": "Adjoint administratif",
+      "informal_fr_note": "Informal French label, not the official French NOC title.",
+      "also_called": [
+        "Administrative assistant",
+        "Office administrative assistant",
+        "Administrative secretary",
+        "Secretary-clerk",
+        "Secretary (except legal and medical)"
+      ],
+      "description": "Support managers and professionals with correspondence, meetings, enquiries, records, and office supplies.",
+      "skills": [
+        "Document editing and proofreading",
+        "Calendar and meeting coordination",
+        "Telephone and email communication",
+        "Filing and data entry",
+        "Office software"
+      ],
+      "employment_requirements": [
+        "Completion of secondary school is usually required.",
+        "Completion of a one- or two-year college or other program for administrative assistants or secretaries, or previous clerical experience, is required."
+      ],
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements section on 2026-11-07, including the official either/or between the college program and previous clerical experience. Employers can differ.",
+      "course_ids": ["excel", "customer_service"],
+      "source_urls": [
+        "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=13110&version=2021.0"
+      ],
+      "screening_warning": ""
+    },
+    {
+      "noc": "22221",
+      "official_title": "User support technicians",
+      "display_title": "IT support / Help desk technician",
+      "informal_fr": "Technicien de soutien informatique",
+      "informal_fr_note": "Informal French label, not the official French NOC title.",
+      "also_called": [
+        "User support technician",
+        "Help desk technician",
+        "Service desk analyst",
+        "Desktop support analyst",
+        "Information technology (IT) support technician",
+        "Technical support analyst"
+      ],
+      "description": "Diagnose users' hardware and software problems, explain solutions, and record support incidents.",
+      "skills": [
+        "Technical troubleshooting",
+        "Hardware and operating systems",
+        "Basic networking",
+        "User communication and training",
+        "Support documentation"
+      ],
+      "employment_requirements": [
+        "Completion of a college program in computer science, computer programming or network administration is usually required.",
+        "College or other courses in computer programming or network administration are usually required.",
+        "Certification or training provided by software vendors may be required by some employers."
+      ],
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements section on 2026-11-07. Vendor training named by an employer is separate from the optional online courses below.",
+      "course_ids": ["google_it", "cisco_networking"],
+      "source_urls": [
+        "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=22221&version=2021.0"
+      ],
+      "screening_warning": ""
+    },
+    {
+      "noc": "22220",
+      "official_title": "Computer network and web technicians",
+      "display_title": "Network support technician / Network administrator",
+      "informal_fr": "Technicien de réseau / Administrateur de réseau",
+      "informal_fr_note": "Informal French label, not the official French NOC title.",
+      "also_called": [
+        "Computer network technician",
+        "Network support technician",
+        "Network administrator",
+        "Local area network (LAN) technician",
+        "Network system administrator",
+        "Web technician"
+      ],
+      "description": "Install and maintain networks, workstations, and web servers, and monitor performance, security, and backups.",
+      "skills": [
+        "LAN and WAN troubleshooting",
+        "Hardware and software installation",
+        "Network administration",
+        "Backups and recovery",
+        "Security monitoring",
+        "Basic scripting"
+      ],
+      "employment_requirements": [
+        "Completion of a college or other program in computer science, network administration, Web technology or a related field is usually required.",
+        "Certification or training provided by software vendors may be required by some employers.",
+        "Registration with a regulatory body is required in Saskatchewan."
+      ],
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements section on 2026-11-07. The profile does not name the Saskatchewan regulator on that page. Verify the current body and which work it covers before relying on it. Optional online courses do not replace that registration, a required diploma, or employer-required vendor certification.",
+      "course_ids": ["cisco_networking", "google_it"],
+      "source_urls": [
+        "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=22220&version=2021.0"
+      ],
+      "screening_warning": "Registration with a regulatory body is an official NOC requirement in Saskatchewan for this unit group. That is a regulatory credential, not a completion certificate from the courses linked here."
+    },
+    {
+      "noc": "62010",
+      "official_title": "Retail sales supervisors",
+      "display_title": "Retail store supervisor",
+      "informal_fr": "Superviseur du commerce de détail",
+      "informal_fr_note": "Informal French label, not the official French NOC title.",
+      "also_called": [
+        "Retail store supervisor",
+        "Sales supervisor - retail",
+        "Department supervisor - retail",
+        "Head cashier",
+        "Stock supervisor - retail",
+        "Customer service supervisor - retail"
+      ],
+      "description": "Coordinate retail staff and shifts, handle returns and complaints, maintain stock, and train staff.",
+      "skills": [
+        "Staff supervision and scheduling",
+        "Customer issue resolution",
+        "Inventory and ordering",
+        "Sales reporting",
+        "Cash and returns procedures",
+        "Staff training"
+      ],
+      "employment_requirements": [
+        "Completion of secondary school is usually required.",
+        "Previous retail sales experience as a retail salesperson or sales clerk, cashier, telemarketer, door-to-door salesperson or rental agent is usually required."
+      ],
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements section on 2026-11-07. The telemarketer and door-to-door wording is part of that official sentence. Those duties are still excluded from future searches for this tracker.",
+      "course_ids": ["customer_service", "excel"],
+      "source_urls": [
+        "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=62010&version=2021.0"
+      ],
+      "screening_warning": "The official profile also covers bakery, delicatessen, meat-department, and food-store supervision, door-to-door sales, and telemarketing, and its duties include developing marketing strategies. Restaurant, food-service, bakery, and marketing duties stay excluded. Selecting this NOC does not override those exclusions. Compare duties, not the job title alone."
+    },
+    {
+      "noc": "14400",
+      "official_title": "Shippers and receivers",
+      "display_title": "Shipper-receiver / Shipping and receiving clerk",
+      "informal_fr": "Expéditeur-réceptionnaire",
+      "informal_fr_note": "Informal French label, not the official French NOC title.",
+      "also_called": [
+        "Shipper-receiver",
+        "Shipping and receiving clerk",
+        "Shipping clerk",
+        "Receiving clerk",
+        "Warehouse receiver",
+        "Warehouse shipper"
+      ],
+      "description": "Receive and check shipments, prepare shipping documents, keep stock-movement records, and route goods.",
+      "skills": [
+        "Shipping paperwork",
+        "Checking goods against invoices",
+        "Inventory records",
+        "Packing and labelling",
+        "Safe loading and unloading"
+      ],
+      "employment_requirements": [
+        "Completion of secondary school is usually required.",
+        "Experience in a related clerical occupation or as a warehouse worker may be required.",
+        "A forklift certificate may be required.",
+        "A driver's licence may be required."
+      ],
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements section on 2026-11-07. A forklift certificate or driver's licence, when an employer requires one, is separate from the optional online courses below. See the forklift and licence notes.",
+      "course_ids": ["whmis", "manual_handling", "excel"],
+      "source_urls": [
+        "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=14400&version=2021.0"
+      ],
+      "screening_warning": "The official title index includes food and beverage processing and produce shipping, for example milk and cream receiver and produce shipper. Food production, fish processing, farm work, and restaurant work stay excluded even if the posting uses this NOC."
+    },
+    {
+      "noc": "75101",
+      "official_title": "Material handlers",
+      "display_title": "Material handler / Warehouse worker",
+      "informal_fr": "Manutentionnaire",
+      "informal_fr_note": "Informal French label, not the official French NOC title.",
+      "also_called": [
+        "Material handler",
+        "Warehouse worker - material handling",
+        "Warehouseperson",
+        "Loader-unloader - material handling",
+        "Freight handler (except air transport)"
+      ],
+      "description": "Move, load, unload, sort, and pack materials by hand or with handling equipment in warehouses, storage, and transport.",
+      "skills": [
+        "Safe lifting and material movement",
+        "Counting and sorting",
+        "Packing and unpacking",
+        "Inventory assistance",
+        "Safe equipment use when trained and authorized"
+      ],
+      "employment_requirements": [
+        "Some secondary school education may be required.",
+        "Physical strength is required for manual material handlers who work with heavy materials."
+      ],
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements section on 2026-11-07. The official index also lists forklift operators and grain-elevator work. Those are not entry-level aliases, and the online courses here do not grant them.",
+      "course_ids": ["manual_handling", "whmis"],
+      "source_urls": [
+        "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=75101&version=2021.0"
+      ],
+      "screening_warning": "Do not treat agricultural, grain, farm, food-production, or fish-plant employers as matches only because this NOC is broad. Forklift operator is an official example title, not a synonym for an applicant without forklift training. Grain elevator operator is an official inclusion and stays outside the farm and food exclusions."
+    },
+    {
+      "noc": "65102",
+      "official_title": "Store shelf stockers, clerks and order fillers",
+      "display_title": "Stock clerk / Shelf stocker / Order filler",
+      "informal_fr": "Commis aux stocks / Garnisseur de tablettes / Préparateur de commandes",
+      "informal_fr_note": "Informal French label, not the official French NOC title.",
+      "also_called": [
+        "Stock clerk - retail",
+        "Shelf stocker - retail",
+        "Stockroom clerk - retail",
+        "Fulfillment associate",
+        "Order picker",
+        "Price clerk - retail"
+      ],
+      "description": "Stock retail shelves, price and scan goods, prepare customer orders, and keep stock records.",
+      "skills": [
+        "Barcode scanning and price checks",
+        "Shelf stocking and organization",
+        "Order picking and packing",
+        "Basic inventory systems",
+        "Customer assistance",
+        "Safe handling"
+      ],
+      "employment_requirements": [
+        "Some secondary school education is usually required."
+      ],
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements section on 2026-11-07. The official duties also say some workers may operate forklifts or other powered industrial trucks. That is employer equipment training, not something these online courses grant.",
+      "course_ids": ["manual_handling", "customer_service", "whmis"],
+      "source_urls": [
+        "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=65102&version=2021.0"
+      ],
+      "screening_warning": "The official index includes bakery assistant, meat cutter helper, meat wrapper, and other food-store titles. Use stock, shelf, price, and non-food order-filling duties only. Bakery, meat preparation, and kitchen tasks stay excluded. Order picker is indexed here; material-moving warehouse work may be 75101 instead. Compare duties."
+    }
+  ],
+  "courses": {
+    "excel": {
+      "title": "Excel Skills for Business Specialization",
+      "provider": "Macquarie University via Coursera",
+      "url": "https://www.coursera.org/specializations/excel",
+      "kind": "optional_online",
+      "skills": ["Spreadsheets", "Formulas", "Data validation", "Business reports"],
+      "credential": "Optional online course and specialization completion certificate. Not Microsoft Office Specialist certification.",
+      "languages": "Taught in English. The provider page lists 26 languages. Confirm the language in the enrollment screen.",
+      "price_note": "Price is not listed here. Check the provider page before enrolling. Nothing on this tracker enrolls you or approves a purchase.",
+      "checked_date": "2026-11-07",
+      "verification": "Provider URL returned HTTP 200 on 2026-11-07. Title, online format, and completion-certificate wording follow the same-day check of the provider page recorded in the upgrade research. This upgrade did not re-read the script-rendered page body."
+    },
+    "customer_service": {
+      "title": "Customer Service Skills",
+      "provider": "Alison",
+      "url": "https://alison.com/course/customer-service-skills",
+      "kind": "optional_online",
+      "skills": ["Telephone etiquette", "Customer communication", "Complaint handling"],
+      "credential": "Optional online learning. The provider offers a course certificate option that may be purchased. It is not a Canadian occupational licence. Confirm the certificate terms on the provider page before enrolling.",
+      "languages": "The provider page lists English and Spanish.",
+      "price_note": "Price is not listed here. Check the provider page before enrolling. Nothing on this tracker enrolls you or approves a purchase.",
+      "checked_date": "2026-11-07",
+      "verification": "Provider URL returned HTTP 200 on 2026-11-07. Course title, languages, and certificate-option wording follow the same-day provider-page check in the upgrade research. No accreditation is claimed."
+    },
+    "google_it": {
+      "title": "Google IT Support Professional Certificate",
+      "provider": "Google via Coursera",
+      "url": "https://www.coursera.org/professional-certificates/google-it-support",
+      "kind": "optional_online",
+      "skills": ["Troubleshooting", "Hardware", "Operating systems", "Networking", "Customer support", "Security"],
+      "credential": "Optional online professional certificate. Not CompTIA A+ certification. A+ exams are separate. This does not replace a required diploma, experience, or provincial registration.",
+      "languages": "Taught in English. The provider page lists six languages. Check whether French is offered before enrolling.",
+      "price_note": "Price is not listed here. Check the provider page before enrolling. Nothing on this tracker enrolls you or approves a purchase.",
+      "checked_date": "2026-11-07",
+      "verification": "Provider URL returned HTTP 200 on 2026-11-07. Online format and completion-credential wording follow the same-day provider-page check in the upgrade research."
+    },
+    "cisco_networking": {
+      "title": "Networking Basics",
+      "provider": "Cisco Networking Academy",
+      "url": "https://www.netacad.com/courses/networking-basics",
+      "kind": "optional_online",
+      "skills": ["Networking fundamentals"],
+      "credential": "Optional online introductory course. Not CCNA certification. A completion badge or certificate was not established from the readable page, so none is promised.",
+      "languages": "Confirm the languages on the enrollment page.",
+      "price_note": "Price is not listed here. Confirm the current cost on the provider page. Nothing on this tracker enrolls you.",
+      "checked_date": "2026-11-07",
+      "verification": "Provider URL returned HTTP 200 on 2026-11-07. The upgrade research found the title Networking Basics and could not read the full dynamic lesson text. Do not infer a certificate from that."
+    },
+    "whmis": {
+      "title": "WHMIS for Workers",
+      "provider": "Canadian Centre for Occupational Health and Safety (CCOHS)",
+      "url": "https://www.ccohs.ca/products/courses/whmis_workers",
+      "kind": "optional_online",
+      "skills": ["Hazard labels", "Safety data sheets", "Hazard recognition"],
+      "credential": "Online certificate of completion after the course and a final multiple-choice exam. CCOHS says you still need instruction specific to your job, worksite, and safety procedures. This is not a professional licence and not a forklift qualification.",
+      "languages": "English and French, as listed on the provider page.",
+      "price_note": "Price is not listed here. The provider sells single-seat access. Check the current price on the provider page. Nothing on this tracker approves a purchase.",
+      "checked_date": "2026-11-07",
+      "verification": "Provider page re-read on 2026-11-07. Title, e-course format, English/French, and certificate-of-completion wording were on the page, including the worksite-instruction sentence."
+    },
+    "manual_handling": {
+      "title": "Manual Materials Handling",
+      "provider": "Canadian Centre for Occupational Health and Safety (CCOHS)",
+      "url": "https://www.ccohs.ca/products/courses/manual_material",
+      "kind": "optional_online",
+      "skills": ["Safe handling", "Lifting risk factors", "Mechanical aids", "Injury prevention"],
+      "credential": "Online certificate of completion after the course and a final multiple-choice exam. This course is about handling materials by hand. It does not show forklift competence and does not replace employer or equipment-specific training.",
+      "languages": "English and French, as listed on the provider page.",
+      "price_note": "Price is not listed here. The provider sells single-seat access. Check the current price on the provider page. Nothing on this tracker approves a purchase.",
+      "checked_date": "2026-11-07",
+      "verification": "Provider page re-read on 2026-11-07. Title, e-course format, English/French, and certificate-of-completion wording were on the page."
+    }
+  }
+}

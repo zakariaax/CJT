@@ -1,0 +1,408 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow"><title>Canada Job Tracker</title>
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#111111">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Job Tracker">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fafafa;--card:#fff;--line:#eaeaea;--line2:#f2f2f2;--tx:#1f2328;--mut:#6e7781;--acc:#111;--blue:#1a56db;--orange:#c2410c;--red:#b91c1c}
+*{box-sizing:border-box}html,body{margin:0}body{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--tx);-webkit-font-smoothing:antialiased;font-size:14px}
+a{color:inherit}button{font:inherit;cursor:pointer}
+.wrap{max-width:1320px;margin:0 auto;padding:0 28px}
+header{display:flex;align-items:baseline;gap:12px;padding:22px 0 6px;flex-wrap:wrap}h1{font-size:19px;margin:0;font-weight:650;letter-spacing:-.01em}.sub{font-size:12.5px;color:var(--mut)}.upd{margin-left:auto;font-size:12px;color:var(--mut)}
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;padding:10px 0 4px}
+.st{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;text-align:left;transition:border-color .15s,box-shadow .15s}.st:hover{border-color:#cfd4da;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.st b{display:block;font-size:22px;font-weight:650;letter-spacing:-.02em}.st span{font-size:12px;color:var(--mut)}.st.warn b{color:var(--orange)}.st.ok b{color:#15803d}.st.rdy b{color:var(--blue)}
+.tabs{display:flex;gap:2px;margin-top:16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tab{background:none;border:0;padding:11px 16px;font-size:15px;color:#57606a;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;font-weight:500}.tab.on{color:var(--acc);border-color:var(--acc);font-weight:650}.tab i{font-style:normal;font-size:12px;background:#f0f0f0;border-radius:99px;padding:1px 7px;margin-left:6px;color:var(--mut)}
+.bar{display:flex;gap:8px;padding:12px 0;flex-wrap:wrap;align-items:center}
+.bar input,.bar select{border:1px solid #e1e4e8;border-radius:8px;padding:8px 10px;font:inherit;font-size:13px;background:#fff;color:var(--tx);height:36px}
+.bar input[type=search]{flex:1;min-width:220px;max-width:360px}.bar .cnt{margin-left:auto;font-size:12.5px;color:var(--mut)}
+.reset{border:0;background:none;color:var(--blue);font-size:13px;padding:0 4px}
+.tbl{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:28px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;font-weight:500;color:var(--mut);padding:9px 12px;border-bottom:1px solid var(--line);background:#fcfcfc;white-space:nowrap;font-size:12.5px}
+td{padding:11px 12px;border-bottom:1px solid var(--line2);vertical-align:top}
+tbody tr.job{cursor:pointer;transition:background .1s}tbody tr.job:hover{background:#f7f9fc}tbody tr.job.soon{background:#fff8f3}tbody tr.job.soon:hover{background:#fff1e6}
+tr.grp td{background:#f6f7f8;font-size:12px;font-weight:600;color:#57606a;padding:8px 12px;letter-spacing:.02em}
+.t{font-weight:600;font-size:13.5px}.c{color:var(--mut);font-size:12px;margin-top:2px}
+.jb{color:var(--blue);text-decoration:none;font-size:12px;margin-left:4px}
+.p{display:inline-block;padding:3px 10px;border-radius:99px;font-size:12px;font-weight:550;white-space:nowrap}
+.s-sent{background:#dcfce7;color:#166534}.s-draft_saved{background:#e8f0fe;color:#1a56db}.s-no_email{background:#fef3c7;color:#92400e}.s-skipped{background:#f1f1f1;color:#6b7280}
+.fl{display:flex;gap:4px;flex-wrap:wrap}.b{font-size:11px;padding:2px 7px;border-radius:6px;background:#f3f4f6;color:#4b5563;white-space:nowrap}.b.lm{background:#ede9fe;color:#5b21b6}.b.in{background:#e0f2fe;color:#075985}.b.fm{background:#fce7f3;color:#9d174d}
+.cl{white-space:nowrap}td.c-found{white-space:nowrap}.cl.soon{color:var(--orange);font-weight:600}.cl.urgent{color:var(--red);font-weight:700}.cl.past{color:#9ca3af;text-decoration:line-through}
+.empty{padding:40px;text-align:center;color:var(--mut)}
+/* drawer */
+.ov{position:fixed;inset:0;background:rgba(17,24,39,.32);opacity:0;pointer-events:none;transition:opacity .2s;z-index:20}.ov.on{opacity:1;pointer-events:auto}
+.dr{position:fixed;top:0;right:0;height:100%;width:min(760px,100%);background:#f6f7f9;z-index:21;transform:translateX(100%);transition:transform .25s ease;display:flex;flex-direction:column;box-shadow:-8px 0 30px rgba(0,0,0,.12)}.dr.on{transform:none}
+.dh{background:#fff;border-bottom:1px solid var(--line);padding:18px 22px 14px;position:relative}
+.dh h2{margin:0 40px 2px 0;font-size:20px;letter-spacing:-.01em}.dh .co{color:var(--mut);font-size:14px}.dh .co a{color:var(--blue);text-decoration:none;white-space:nowrap}
+.x{position:absolute;top:14px;right:14px;border:1px solid var(--line);background:#fff;border-radius:8px;width:34px;height:34px;font-size:18px;line-height:1;color:#444}
+.big{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:8px 14px;border-radius:10px;font-size:14px;font-weight:600}
+.big::before{content:"";width:9px;height:9px;border-radius:50%;background:currentColor}
+.db{overflow-y:auto;padding:16px 22px 40px;flex:1;-webkit-overflow-scrolling:touch}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.f{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:9px 11px;font-size:13px;line-height:1.4;word-break:break-word}.f .lb{display:block;color:#9ca3af;font-size:11px;margin-bottom:2px;text-transform:uppercase;letter-spacing:.04em;font-style:normal}.f.w2{grid-column:span 2}.f.w4{grid-column:1/-1}
+.sec{margin-top:16px}.sec>h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#4338ca;margin:0 0 8px;display:flex;align-items:center;justify-content:space-between}
+.box{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:14px 16px;font-size:13.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.meta{display:grid;grid-template-columns:70px 1fr;gap:4px 10px;font-size:13px;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #f0f0f0;white-space:normal}.meta b{color:#9ca3af;font-weight:500}
+.cp{border:1px solid #e5e7eb;background:#fff;border-radius:7px;font-size:12px;padding:4px 10px;color:#374151;text-transform:none;letter-spacing:0;font-weight:500}.cp.done{background:#dcfce7;border-color:#bbf7d0;color:#166534}
+.att{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px 12px;margin-bottom:8px}.att .ic{width:34px;height:40px;border-radius:6px;background:#fee2e2;color:#b91c1c;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.att .nm{flex:1;min-width:0}.att .nm b{display:block;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.att .nm small{color:var(--mut)}
+.btn{border:1px solid #e5e7eb;background:#fff;border-radius:8px;padding:6px 11px;font-size:12.5px;text-decoration:none;color:#111;white-space:nowrap}.btn.pri{background:#111;color:#fff;border-color:#111}
+.na{color:#9ca3af;font-style:italic}
+details.more{margin-top:16px}details.more summary{cursor:pointer;font-size:13px;color:#4b5563;font-weight:600}
+@media (max-width:900px){.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.f.w2{grid-column:1/-1}}
+@media (max-width:760px){
+ .wrap{padding:0 14px}header{padding-top:16px}.upd{margin-left:0;width:100%}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats .st:first-child{grid-column:1/-1}.st b{font-size:20px}
+ .tab{flex:0 0 auto;font-size:15px;padding:12px 10px}.bar input[type=search]{max-width:none;min-width:100%}.bar select{flex:1;min-width:calc(50% - 4px)}.bar .cnt{width:100%;margin-left:0}
+ .tbl{background:none;border:0}table,tbody{display:block}thead{display:none}
+ tr.grp{display:block}tr.grp td{display:block;background:none;padding:14px 2px 6px}
+ tr.job{display:grid;grid-template-columns:1fr auto;gap:6px 10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px}tbody tr.job.soon{background:#fff;border-left:3px solid var(--orange)}
+ tr.job td{display:block;padding:0;border:0}
+ td.c-job{grid-column:1/2}td.c-st{grid-column:2/3;grid-row:1;text-align:right}td.c-loc,td.c-pay,td.c-type{grid-column:1/-1;font-size:12.5px;color:#4b5563}td.c-loc .c{display:inline;margin-left:4px}
+ td.c-fl{grid-column:1/-1}td.c-found,td.c-cl{font-size:12px;color:var(--mut)}td.c-found::before{content:"Found "}td.c-cl{text-align:right}td.c-cl::before{content:"Closes ";color:var(--mut);font-weight:400}
+ .tab{flex:0 0 auto;padding:12px 10px}
+ .dr{width:100%;box-shadow:none}.dh{padding:16px 16px 12px}.db{padding:14px 16px 40px}.big{font-size:13px}
+ .savebar{padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+[hidden]{display:none !important}
+.fixture{background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a;border-radius:10px;padding:8px 12px;font-size:12.5px;margin:8px 0 0;line-height:1.45}
+.install{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:8px 0 2px;font-size:12.5px;color:#4b5563;line-height:1.45}
+.install p{margin:0}
+.install button{margin-top:8px;min-height:44px;background:#111;color:#fff;border:0;border-radius:8px;padding:8px 14px;font-weight:650}
+.opt{display:flex;align-items:center;gap:8px;font-size:13px;color:#4b5563;min-height:36px}
+.opt input{width:18px;height:18px;accent-color:#111}
+.intro{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0;line-height:1.5}
+.intro h2{margin:0 0 6px;font-size:16px}
+.intro p,.intro li{margin:6px 0;color:#4b5563}
+.roles{display:flex;flex-direction:column;gap:12px;margin-bottom:12px}
+.role{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+.role-top{display:flex;gap:12px;align-items:flex-start;min-height:44px;cursor:pointer}
+.role-top input{width:22px;height:22px;margin-top:2px;flex:none;accent-color:#111}
+.role h3{margin:0;font-size:16px;letter-spacing:-.01em}
+.role .subline{display:block;margin-top:3px;color:var(--mut);font-size:12.5px}
+.noc-code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:650;color:var(--tx)}
+.role ul{margin:6px 0 0;padding-left:18px}
+.role h4{margin:12px 0 4px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:#4338ca}
+.warnbox{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:10px 12px;color:#9a3412;font-size:13px;line-height:1.45;margin-top:10px}
+.course{border-top:1px solid var(--line2);margin-top:10px;padding-top:8px}
+.course a{color:var(--blue)}
+.pill{display:inline-block;font-size:11px;padding:2px 7px;border-radius:99px;background:#fff7ed;color:#9a3412;border:1px solid #fed7aa;margin-right:6px}
+.pill.reg{background:#fef2f2;color:#991b1b;border-color:#fecaca}
+.savebar{position:sticky;bottom:0;z-index:5;background:#fafafa;border-top:1px solid var(--line);box-shadow:0 -6px 16px rgba(250,250,250,.95);padding:12px 0 16px;display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.save-copy{flex:1;min-width:220px}
+.save-copy p{margin:0 0 4px}
+.savebar button{background:#111;color:#fff;border:0;border-radius:10px;padding:12px 16px;font-weight:650;min-height:44px}
+.savebar button:disabled{opacity:.5}
+.okmsg{color:#15803d;font-weight:650}
+.errmsg{color:var(--red);font-weight:650}
+</style></head><body>
+<div class="wrap">
+<header><h1>🍁 Canada Job Tracker</h1><span class="sub">__DISPLAY_NAME__ · Job Bank applications</span><button type="button" class="reset" id="logoutBtn">Log out</button><span class="upd" id="upd"></span></header>
+<p id="fixtureBanner" class="fixture" hidden></p>
+<section id="install" class="install" aria-label="Install the tracker"><p id="installMsg"></p><div id="installAction"></div></section>
+<div class="stats" id="stats"></div>
+<nav class="tabs" id="tabs" role="tablist" aria-label="Sections"></nav>
+<div id="jobView">
+<div class="bar" id="bar">
+ <input type="search" id="q" placeholder="Search title, company, city, email…" autocomplete="off">
+ <select id="fDate" title="Date found"></select>
+ <select id="fStatus"><option value="">All statuses</option><option value="sent">Sent</option><option value="draft_saved">Draft ready</option><option value="no_email">No email</option><option value="skipped">Skipped</option><option value="soon">Closing soon</option></select>
+ <select id="fProv"><option value="">All provinces</option></select>
+ <select id="fNoc"><option value="">All NOC</option></select>
+ <select id="fLmia"><option value="">LMIA: any</option><option value="req">LMIA requested</option><option value="none">No LMIA shown</option></select>
+ <select id="fSort"><option value="found">Newest found</option><option value="close">Closing soonest</option><option value="sent">Recently sent</option><option value="pay">Highest pay</option></select>
+ <label class="opt" for="onlyInterests"><input type="checkbox" id="onlyInterests"> Optional: limit this list to saved job interests</label>
+ <button class="reset" id="reset">Reset</button><span class="cnt" id="cnt"></span>
+</div>
+<div class="tbl"><table><thead><tr><th>Job</th><th>Location</th><th>Type</th><th>Pay</th><th>Flags</th><th>Found</th><th>Closes</th><th>Status</th></tr></thead><tbody id="tb"></tbody></table><div class="empty" id="empty" hidden></div></div>
+</div>
+<section id="interestView" hidden aria-label="Job interests"><div id="interestRoot"></div></section>
+</div>
+<div class="ov" id="ov"></div><aside class="dr" id="dr" aria-hidden="true"></aside>
+<script>
+let D=[],META={},tab='all',cur=null,dataLoadError='',prefsLoaded=false,prefsLoadError='',interestsBuilt=false,saving=false,deferredPrompt=null;
+let serverPrefs={configured:false,nocs:[],storage_state:'missing',catalogue:{roles:[],courses:{},exclusions:[]},selection_meaning:'not_configured',updated_at:null};
+let draft=new Set();
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const L={sent:'Sent',draft_saved:'Draft ready',no_email:'No email',skipped:'Skipped'};
+const tc=s=>(s||'').replace(/(^|[\s(\/-])([a-zà-ÿ])/g,(m,a,b)=>a+b.toUpperCase());
+const today=(()=>{const d=new Date();return new Date(d.getFullYear(),d.getMonth(),d.getDate())})();
+const pd=s=>{const m=/^(\d{4})-(\d\d)-(\d\d)/.exec(s||'');return m?new Date(+m[1],m[2]-1,+m[3]):null};
+const days=s=>{const d=pd(s);return d?Math.round((d-today)/864e5):null};
+const fd=s=>{const d=pd(s);return d?d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}).replace(/(\d+) (\w+) (\d+)/,'$2 $1, $3'):''};
+const fdt=iso=>{try{const d=new Date(iso);return d.toLocaleString('en-GB',{timeZone:'Europe/London',month:'short',day:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).replace(/(\d+) (\w+) (\d+),? /,'$2 $1, $3 ')+' (UK time)'}catch(e){return iso}};
+const active=j=>j.status==='draft_saved'||j.status==='no_email';
+const isSoon=j=>{const n=days(j.closing_date);return active(j)&&n!==null&&n>=0&&n<=7};
+const yes=s=>/^yes/i.test(s||'');
+const pay=j=>{const m=/\$([\d,.]+)/.exec(j.wage||'');if(!m)return 0;let v=parseFloat(m[1].replace(/,/g,''));return /year|annual/i.test(j.wage)?v/2080:v};
+const typeOf=j=>{const t=(j.employment_type||'').split(',').map(s=>s.trim()).filter(Boolean);return t.length?t.reverse().join(' · '):''};
+const sentDate=j=>(j.date_sent||'').slice(0,10)||((j.email&&j.email.source==='gmail sent message'&&j.email.gmail_date)?j.email.gmail_date.slice(0,10):'');
+function batchTxt(b){const m=/^\s*(\d+)\s*\(([^)]+)\)/.exec(b||'');return m?`${m[2]} batch (#${m[1]})`:(b||'')}
+function statusLong(j){
+ if(j.status==='sent'){const e=j.email;const t=(e&&e.source==='gmail sent message'&&e.gmail_date)?fdt(e.gmail_date):(fd(j.date_sent)+((/\d\d:\d\d/.exec(j.date_sent||'')||[''])[0]?' '+/\d\d:\d\d/.exec(j.date_sent)[0]+(/London/.test(j.date_sent)?' (UK time)':''):''));return 'Sent on '+(t||'date not recorded')}
+ if(j.status==='draft_saved')return j.send_batch?'Ready to send – scheduled '+batchTxt(j.send_batch):'Ready to send – not scheduled yet';
+ if(j.status==='no_email')return 'No email – '+(j.no_email_how?j.no_email_how.replace(/^apply via link:.*$/i,'apply via Job Bank'):'apply via Job Bank / phone / in person');
+ if(j.status==='skipped')return 'Skipped'+(j.skip_reason?' – '+j.skip_reason:'');
+ return j.status}
+function load(){
+ const dataReq=fetch('/api/data',{credentials:'same-origin',cache:'no-store'});
+ const prefReq=fetch('/api/preferences',{credentials:'same-origin',cache:'no-store'});
+ dataReq.then(r=>{if(!r.ok)throw new Error('Could not load jobs ('+r.status+')');return r.json()}).then(d=>{D=d.jobs||[];META=d.meta||{};dataLoadError=''}).catch(e=>{D=[];META={};dataLoadError='Could not load data: '+(e.message||e)}).finally(()=>{
+  prefReq.then(r=>{if(!r.ok)throw new Error('Could not load interests ('+r.status+')');return r.json()}).then(p=>{applyServerPrefs(p);prefsLoaded=true;prefsLoadError=''}).catch(e=>{prefsLoaded=false;prefsLoadError=e.message||'Could not load interests';applyServerPrefs({configured:false,nocs:[],storage_state:'missing',catalogue:{roles:[],courses:{},exclusions:[]},selection_meaning:'not_configured'})}).finally(init);
+ })}
+function init(){
+ $('upd').textContent=META.generated?'Data updated '+fdt(META.generated):'';
+ if(META.synthetic){$('fixtureBanner').hidden=false;$('fixtureBanner').textContent=(META.note||'Synthetic example data.')+' Interests saved in this preview stay in this preview only.'}
+ const opts=(arr,el,lab)=>{[...new Set(arr.filter(Boolean))].sort().forEach(v=>el.insertAdjacentHTML('beforeend',`<option value="${esc(v)}">${esc(lab?lab(v):v)}</option>`))};
+ opts(D.map(j=>j.province),$('fProv'));
+ const nocName={};D.forEach(j=>{if(j.noc)nocName[j.noc]=(j.occupation||'').replace(/^\d+\s*/,'')});
+ opts(D.map(j=>j.noc),$('fNoc'),v=>v+(nocName[v]?' – '+nocName[v]:''));
+ const ds=[...new Set(D.map(j=>j.date_found).filter(Boolean))].sort().reverse();
+ $('fDate').innerHTML='<option value="">All dates found</option>'+ds.map(d=>`<option value="${d}">Found ${fd(d)}</option>`).join('');
+ ['q','fDate','fStatus','fProv','fNoc','fLmia','fSort'].forEach(id=>$(id).addEventListener('input',render));
+ $('onlyInterests').addEventListener('change',render);
+ $('reset').onclick=()=>{['q','fDate','fStatus','fProv','fNoc','fLmia'].forEach(id=>$(id).value='');$('onlyInterests').checked=false;$('fSort').value=tab==='applied'?'sent':'found';render()};
+ stats();
+ if(location.hash==='#interests')setTab('interests');
+ else{setTab(tab);const h=/job=(\d+)/.exec(location.hash);if(h)openJob(h[1])}
+}
+function paintTabs(){
+ const sent=D.filter(j=>j.status==='sent').length;
+ const interestBadge=prefsLoaded&&serverPrefs.configured?String(serverPrefs.nocs.length):'';
+ const T=[['all','All',String(D.length)],['new','New jobs',String(D.length)],['applied','Applied',String(sent)],['interests','Job interests',interestBadge]];
+ $('tabs').innerHTML=T.map(t=>`<button type="button" class="tab${t[0]===tab?' on':''}" role="tab" id="tab-${t[0]}" aria-selected="${t[0]===tab}" tabindex="${t[0]===tab?'0':'-1'}" data-t="${t[0]}">${esc(t[1])}${t[2]!==''?`<i>${esc(t[2])}</i>`:''}</button>`).join('');
+ $('tabs').querySelectorAll('.tab').forEach(b=>b.onclick=()=>setTab(b.dataset.t));
+ $('tabs').onkeydown=e=>{
+  if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;
+  const tabs=[...$('tabs').querySelectorAll('[role=tab]')];
+  const i=Math.max(0,tabs.findIndex(el=>el.dataset.t===tab));
+  e.preventDefault();
+  const n=e.key==='ArrowRight'?(i+1)%tabs.length:(i-1+tabs.length)%tabs.length;
+  const id=tabs[n].dataset.t; setTab(id); const next=$('tabs').querySelector('[data-t="'+id+'"]'); if(next)next.focus();
+ };
+}
+function stats(){
+ const tl=`${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+ const sent=D.filter(j=>j.status==='sent');
+ const S=[['Total found',D.length,'',()=>{setTab('all');$('fStatus').value=''}],
+  ['Sent today',sent.filter(j=>sentDate(j)===tl).length,'ok',()=>{setTab('applied')}],
+  ['Sent total',sent.length,'ok',()=>{setTab('applied')}],
+  ['Ready to send',D.filter(j=>j.status==='draft_saved').length,'rdy',()=>{setTab('all');$('fStatus').value='draft_saved'}],
+  ['Closing soon (≤7 days)',D.filter(isSoon).length,'warn',()=>{setTab('all');$('fStatus').value='soon';$('fSort').value='close'}]];
+ $('stats').innerHTML=S.map((s,i)=>`<button class="st ${s[2]}" data-i="${i}"><b>${s[1]}</b><span>${s[0]}</span></button>`).join('');
+ $('stats').querySelectorAll('.st').forEach(b=>b.onclick=()=>{S[+b.dataset.i][3]();render()});
+ paintTabs();
+}
+function setTab(t){tab=t;paintTabs();
+ const interests=t==='interests';
+ $('jobView').hidden=interests;$('interestView').hidden=!interests;
+ if(interests){renderInterests();return}
+ $('fDate').style.display=t==='new'?'':'none';
+ if(t==='new')$('fSort').value='found';
+ if(t==='applied')$('fSort').value='sent';else if($('fSort').value==='sent')$('fSort').value='found';
+ render()}
+function filtered(){
+ const q=$('q').value.trim().toLowerCase(),st=$('fStatus').value,pv=$('fProv').value,nc=$('fNoc').value,lm=$('fLmia').value,dt=$('fDate').value;
+ const limit=$('onlyInterests').checked&&prefsLoaded&&serverPrefs.configured;
+ const allow=new Set(serverPrefs.nocs||[]);
+ return D.filter(j=>{
+  if(tab==='applied'&&j.status!=='sent')return false;
+  if(tab==='new'&&dt&&j.date_found!==dt)return false;
+  if(st==='soon'?!isSoon(j):(st&&j.status!==st))return false;
+  if(pv&&j.province!==pv)return false;if(nc&&j.noc!==nc)return false;
+  if(lm==='req'&&!/requested/i.test(j.lmia_status))return false;if(lm==='none'&&/requested/i.test(j.lmia_status))return false;
+  if(limit){const code=String(j.noc||'').match(/\b(\d{5})\b/);if(!code||!allow.has(code[1]))return false}
+  if(q){const h=[j.title,j.company,j.city,j.province,j.noc,j.apply_email,j.job_id,j.occupation,j.email_subject].join(' ').toLowerCase();if(!q.split(/\s+/).every(w=>h.includes(w)))return false}
+  return true})}
+function sorter(a,b){const s=$('fSort').value;
+ if(s==='close')return (a.closing_date||'9999').localeCompare(b.closing_date||'9999');
+ if(s==='pay')return pay(b)-pay(a);
+ if(s==='sent')return (sentDate(b)+(b.email&&b.email.gmail_date||'')).localeCompare(sentDate(a)+(a.email&&a.email.gmail_date||''));
+ const rk={draft_saved:0,sent:1,no_email:2,skipped:3};return (b.date_found||'').localeCompare(a.date_found||'')||(rk[a.status]??4)-(rk[b.status]??4)||(a.closing_date||'9999').localeCompare(b.closing_date||'9999')}
+function clCell(j){const n=days(j.closing_date);if(!j.closing_date)return '<span class="na">not shown</span>';
+ let c='cl';if(n<0)c+=' past';else if(active(j)&&n<=2)c+=' urgent';else if(active(j)&&n<=7)c+=' soon';
+ return `<span class="${c}" title="${n<0?'closed':n===0?'closes today':n+' days left'}">${fd(j.closing_date)}</span>`}
+function row(j){return `<tr class="job${isSoon(j)?' soon':''}" data-id="${j.job_id}">
+<td class="c-job"><div class="t">${esc(tc(j.title))}</div><div class="c">${esc(j.company)}</div></td>
+<td class="c-loc">${esc(j.city)}, ${esc(j.province)}<div class="c">${esc(j.work_mode||'')}</div></td>
+<td class="c-type">${esc(typeOf(j))||'<span class="na">not shown</span>'}</td>
+<td class="c-pay">${esc((j.wage||'').split('/')[0].trim())||'<span class="na">not shown</span>'}</td>
+<td class="c-fl"><div class="fl">${/requested/i.test(j.lmia_status)?'<span class="b lm">LMIA requested</span>':''}${yes(j.open_to_international)?'<span class="b in">Open to intl</span>':''}${yes(j.francophone_mobility)?'<span class="b fm">Francophone Mobility</span>':''}</div></td>
+<td class="c-found">${fd(j.date_found)}</td><td class="c-cl">${clCell(j)}</td>
+<td class="c-st"><span class="p s-${j.status}">${L[j.status]||esc(j.status)}</span></td></tr>`}
+function interestLimitNote(){
+ if(!$('onlyInterests').checked)return '';
+ if(!prefsLoaded)return ' Saved interests have not loaded, so no jobs are hidden.';
+ if(!serverPrefs.configured)return ' Interests are not saved yet, so no jobs are hidden.';
+ if(!(serverPrefs.nocs||[]).length)return ' Saved interests are empty. This optional limit matches no jobs. Uncheck it to see every saved job again.';
+ return ' Optional limit is on. Tab totals are unchanged.';
+}
+function render(){
+ if(dataLoadError){$('tb').innerHTML='';$('empty').hidden=false;$('empty').textContent=dataLoadError;$('cnt').textContent='';return}
+ const R=filtered().sort(sorter);$('cnt').textContent=R.length+' of '+D.length+' jobs'+interestLimitNote();
+ let html='';
+ if(tab==='new'||tab==='applied'){const key=tab==='new'?(j=>j.date_found||''):sentDate;const g={};const order=[];
+  R.forEach(j=>{const k=key(j);if(!(k in g)){g[k]=[];order.push(k)}g[k].push(j)});
+  order.sort().reverse();
+  order.forEach(k=>{html+=`<tr class="grp"><td colspan="8">${tab==='new'?'Found':'Sent'} ${k?fd(k):'(date not recorded)'} · ${g[k].length} job${g[k].length>1?'s':''}</td></tr>`+g[k].map(row).join('')})}
+ else html=R.map(row).join('');
+ $('tb').innerHTML=html;
+ const e=$('empty');e.hidden=!!R.length;
+ if(!R.length)e.textContent=$('onlyInterests').checked&&prefsLoaded&&serverPrefs.configured&&!(serverPrefs.nocs||[]).length?'Saved job interests are empty, so this optional limit matches nothing. Uncheck it to see every job again. Tab counts still include every saved job.':tab==='applied'&&!D.some(j=>j.status==='sent')?`Nothing sent yet – ${D.filter(j=>j.status==='draft_saved').length} drafts are ready to send.`:'No jobs match these filters.';
+ $('tb').querySelectorAll('tr.job').forEach(tr=>tr.onclick=()=>openJob(tr.dataset.id));
+}
+const fact=(k,v,cls)=>`<div class="f ${cls||''}"><em class="lb">${k}</em>${v?v:'<span class="na">not shown</span>'}</div>`;
+function copyBtn(id){return `<button class="cp" data-copy="${id}">Copy</button>`}
+function openJob(id){const j=D.find(x=>x.job_id===id);if(!j)return;cur=j;
+ const e=j.email,loc=`${j.city}, ${j.province}`;
+ const stc={sent:'s-sent',draft_saved:'s-draft_saved',no_email:'s-no_email',skipped:'s-skipped'}[j.status]||'';
+ const fsz=n=>n>1e6?(n/1e6).toFixed(1)+' MB':Math.round(n/1e3)+' KB';
+ const att=(j.files||[]).map(f=>{const u=`/file/${f.hash}/${encodeURIComponent(f.name)}`;return `<div class="att"><div class="ic">PDF</div><div class="nm"><b>${esc(f.name)}</b><small>${esc(f.kind)} · ${fsz(f.size)}</small></div><a class="btn" href="${u}" target="_blank" rel="noopener">View</a><a class="btn pri" href="${u}?dl=1">Download</a></div>`}).join('');
+ const sentLbl=j.status==='sent'?'sent':'prepared';
+ $('dr').innerHTML=`<div class="dh"><button class="x" id="x" aria-label="Close">×</button>
+<h2>${esc(tc(j.title))}</h2><div class="co">${esc(j.company)} · ${esc(loc)} · <a href="${esc(j.source_url)}" target="_blank" rel="noopener">Job Bank ↗</a></div>
+<div class="big ${stc}">${esc(statusLong(j))}</div></div>
+<div class="db">
+<div class="facts">
+${fact('Pay',esc(j.wage),'w2')}${fact('Type',esc(j.employment_type))}${fact('Work mode',esc(j.work_mode))}
+${fact('Location',esc(loc))}${fact('LMIA',esc(j.lmia_status))}${fact('Date posted',esc(fd(j.date_posted)))}${fact('Date found',esc(fd(j.date_found)))}
+${fact('Closing date',j.closing_date?clCell(j):'')}${fact('Language',esc(j.language))}${fact('Start date',esc(j.start_date))}${fact('Job Bank',j.source_url?`<a href="${esc(j.source_url)}" target="_blank" rel="noopener" style="color:#1a56db">#${esc(j.job_id)} ↗</a>`:'')}
+${fact('Open to international candidates',esc(j.open_to_international),'w4')}
+${j.who_can_apply?fact('Who can apply',esc(j.who_can_apply),'w4'):''}
+${fact('Francophone Mobility',esc(j.francophone_mobility),'w4')}
+${fact('Requirements',esc(j.requirements),'w4')}
+</div>
+<div class="sec"><h3>Email ${sentLbl} ${e?copyBtn('em'):''}</h3>${e?`<div class="box"><div class="meta"><b>To</b><span>${esc(e.to||j.apply_email)}</span><b>Subject</b><span style="font-weight:600">${esc(e.subject)}</span>${e.attachments&&e.attachments.length?`<b>Attached</b><span>${e.attachments.map(esc).join(', ')}</span>`:''}</div><div id="em-body">${esc(e.body)}</div></div><div class="c" style="margin-top:6px">Source: ${esc(e.source||'')}${e.fetched?' · fetched '+esc(fdt(e.fetched)):''}</div>`:`<div class="box na">${j.status==='no_email'?'No email for this job – '+esc(j.no_email_how||'apply via Job Bank'):'No email was prepared for this job.'}</div>`}</div>
+<div class="sec"><h3>Cover letter ${j.cover_letter?copyBtn('cl'):''}</h3>${j.cover_letter?`<div class="box" id="cl-body">${esc(j.cover_letter)}</div>`:'<div class="box na">No cover letter on file for this job.</div>'}</div>
+<div class="sec"><h3>Files ${sentLbl} (tailored CV &amp; cover letter)</h3>${att||'<div class="box na">No files on file for this job.</div>'}</div>
+<details class="more"><summary>More details (NOC, how to apply, notes)</summary><div class="facts" style="margin-top:10px">
+${fact('NOC',esc(j.noc+(j.occupation?' – '+j.occupation.replace(/^\d+\s*/,''):'')),'w2')}${fact('Job ID',esc(j.job_id))}${fact('Date drafted',esc(fd(j.date_drafted)))}
+${fact('How to apply',esc(j.apply_method||j.apply_email),'w4')}
+${j.screening_questions?fact('Screening questions',esc(j.screening_questions),'w4'):''}
+${fact('Fit notes',esc(j.fit_notes),'w4')}${fact('Tracker notes',esc(j.notes).replace(/ \| /g,'<br>'),'w4')}
+${j.gmail_draft_id?fact('Gmail draft ID',esc(j.gmail_draft_id),'w4'):''}
+</div></details>
+</div>`;
+ $('dr').classList.add('on');$('ov').classList.add('on');$('dr').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+ history.replaceState(null,'','#job='+id);
+ $('x').onclick=closeJob;
+ $('dr').querySelectorAll('[data-copy]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();const k=b.dataset.copy;
+  const txt=k==='em'?`To: ${e.to||j.apply_email}\nSubject: ${e.subject}\n\n${e.body}`:j.cover_letter;
+  const done=()=>{b.textContent='Copied ✓';b.classList.add('done');setTimeout(()=>{b.textContent='Copy';b.classList.remove('done')},1600)};
+  if(navigator.clipboard)navigator.clipboard.writeText(txt).then(done,()=>fallback(txt,done));else fallback(txt,done)});
+}
+function fallback(t,done){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){}a.remove()}
+function closeJob(){$('dr').classList.remove('on');$('ov').classList.remove('on');$('dr').setAttribute('aria-hidden','true');document.body.style.overflow='';history.replaceState(null,'',location.pathname)}
+$('ov').onclick=closeJob;document.addEventListener('keydown',e=>{if(e.key==='Escape')closeJob()});
+function applyServerPrefs(p){
+ serverPrefs=p&&typeof p==='object'?p:serverPrefs;
+ if(!serverPrefs.catalogue)serverPrefs.catalogue={roles:[],courses:{},exclusions:[]};
+ if(!Array.isArray(serverPrefs.nocs))serverPrefs.nocs=[];
+ draft=new Set(serverPrefs.configured?serverPrefs.nocs:[]);
+ interestsBuilt=false;
+}
+function setsEqual(a,b){if(a.size!==b.size)return false;for(const x of a)if(!b.has(x))return false;return true}
+function savedSet(){return new Set(serverPrefs.configured?serverPrefs.nocs||[]:[])}
+function dirty(){return prefsLoaded&&!setsEqual(draft,savedSet())}
+function canSave(){if(!prefsLoaded||saving)return false;if(!serverPrefs.configured)return true;return dirty()}
+function liList(items){return '<ul>'+(items||[]).map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>'}
+function courseBlock(id){
+ const c=(serverPrefs.catalogue.courses||{})[id]; if(!c)return '';
+ return `<div class="course"><span class="pill">Optional online learning</span> <b>${esc(c.title)}</b><div class="c">${esc(c.provider)}</div><div><a href="${esc(c.url)}" target="_blank" rel="noopener noreferrer">${esc(c.url)}</a></div><p>${esc(c.credential||'')}</p><p>${esc(c.languages||'')}</p><p>${esc(c.price_note||'')}</p></div>`;
+}
+function roleCard(role){
+ const id='interest-'+role.noc, checked=draft.has(role.noc)?' checked':'';
+ const cat=serverPrefs.catalogue||{};
+ const warning=role.screening_warning?`<div class="warnbox">${esc(role.screening_warning)}</div>`:'';
+ const reg=role.noc==='22220'?'<p><span class="pill reg">Regulatory credential</span> The Saskatchewan registration named on the NOC profile is not granted by the courses on this card.</p>':'';
+ const lift=(role.noc==='14400'||role.noc==='75101'||role.noc==='65102')&&cat.forklift_note?`<div class="warnbox"><b>In-person equipment training.</b> ${esc(cat.forklift_note)} ${(cat.forklift_sources||[]).map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title||s.url)}</a>`).join(' ')}</div>`:'';
+ const licence=role.noc==='14400'&&cat.licence_note?`<p>${esc(cat.licence_note)}</p>`:'';
+ const sources=(role.source_urls||[]).map(u=>`<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">Official NOC ${esc(role.noc)} profile</a>`).join(' ');
+ return `<article class="role"><label class="role-top" for="${id}"><input type="checkbox" id="${id}" value="${esc(role.noc)}"${checked}><span><h3>${esc(role.display_title)}</h3><span class="subline">Official NOC 2021 title: ${esc(role.official_title)} · code <span class="noc-code">${esc(role.noc)}</span></span></span></label><p>${esc(role.informal_fr||'')} <span class="c">${esc(role.informal_fr_note||'')}</span></p><p>${esc(role.description||'')}</p><h4>Also called</h4><p>${esc((role.also_called||[]).join(' · '))}</p><h4>Typical skills</h4>${liList(role.skills)}<p class="c">Plain-language summary of official duties, not an extra legal list.</p><h4>Employment requirements on the NOC profile</h4>${liList(role.employment_requirements)}<p class="c">${esc(role.requirements_note||'')}</p>${warning}${reg}${lift}${licence}<h4>Optional online courses</h4><p class="c">These are learning options. A completion certificate is not a professional licence, a regulatory credential, or in-person employer training, and it does not promise a job or a visa.</p>${(role.course_ids||[]).map(courseBlock).join('')}<h4>Source</h4><p>${sources}</p></article>`;
+}
+function updateInterestStatus(){
+ const count=$('interestCount'),hint=$('saveHint'),btn=$('saveInterests'),status=$('saveStatus');
+ if(!count||!status)return;
+ const n=draft.size,total=((serverPrefs.catalogue||{}).roles||[]).length;
+ count.textContent=n+' of '+total+' selected'+(dirty()?' · unsaved changes':'');
+ if(!prefsLoaded){status.textContent=prefsLoadError||'Saved interests could not be loaded. Nothing was selected for you.';status.className='errmsg';if(btn)btn.disabled=true;return}
+ if(serverPrefs.storage_state==='unreadable'){status.textContent='Stored interests could not be read. This is not an empty selection and not all roles. Saving replaces the unreadable value.';status.className='errmsg'}
+ else if(!serverPrefs.configured&&n===0){status.textContent='Not saved yet. Nothing has been chosen for you. Saving with none checked records an empty selection: future searches are instructed to search no NOC groups. That is different from never having saved.';status.className=''}
+ else if(!serverPrefs.configured||dirty()){status.textContent='Unsaved changes. '+(serverPrefs.configured?'The last save is still '+(serverPrefs.nocs||[]).length+' role'+((serverPrefs.nocs||[]).length===1?'':'s')+'.':'Press Save to store this selection on the server.');status.className=''}
+ else if(!(serverPrefs.nocs||[]).length){status.textContent='Saved empty selection. Future searches are instructed to search no NOC groups, not every role. Another device may take a minute to show a new save.';status.className='okmsg'}
+ else{status.textContent='Saved '+n+' of '+total+'. Future searches are instructed to use only these NOC codes. Aliases help when a posting has no code; they are not an exact-title filter. Another device may take a minute to show a new save.';status.className='okmsg'}
+ if(hint)hint.textContent=n===0?'None checked.':n+' checked.';
+ if(btn)btn.disabled=!canSave();
+}
+function buildInterestCards(){
+ const cat=serverPrefs.catalogue||{roles:[],exclusions:[]};
+ const exclusions=(cat.exclusions||[]).map(x=>'<li>'+esc(x)+'</li>').join('');
+ $('interestRoot').innerHTML=`<div class="intro"><h2>Job interests</h2><p>${esc(cat.promise_note||'Saving a role does not submit an application or promise a job, a visa, or a qualification.')}</p><p>${esc(cat.exclusion_note||'')}</p><ul>${exclusions}</ul></div><div class="roles">${(cat.roles||[]).map(roleCard).join('')}</div><div class="savebar"><div class="save-copy"><p id="interestCount"></p><p id="saveStatus" role="status" aria-live="polite"></p><p id="saveError" role="alert"></p></div><button type="button" id="saveInterests">Save interests</button><span id="saveHint"></span></div>`;
+ $('interestRoot').querySelectorAll('input[type=checkbox]').forEach(input=>input.addEventListener('change',()=>{if(input.checked)draft.add(input.value);else draft.delete(input.value);$('saveError').textContent='';updateInterestStatus()}));
+ $('saveInterests').onclick=saveInterests;
+ interestsBuilt=true; updateInterestStatus();
+}
+function renderInterests(){if(!interestsBuilt)buildInterestCards();else updateInterestStatus()}
+async function saveInterests(){
+ if(!canSave())return;
+ saving=true; updateInterestStatus();
+ const nocs=[...draft];
+ try{
+  const res=await fetch('/api/preferences',{method:'PUT',credentials:'same-origin',cache:'no-store',headers:{'Content-Type':'application/json','X-Tracker-Intent':'save-job-interests'},body:JSON.stringify({nocs})});
+  const body=await res.json().catch(()=>({}));
+  if(!res.ok||body.ok===false)throw new Error(body.message||('Save failed ('+res.status+')'));
+  applyServerPrefs(body); prefsLoaded=true; prefsLoadError='';
+  $('saveError').textContent='';
+  paintTabs();
+  interestsBuilt=false; renderInterests();
+ }catch(e){
+  const err=$('saveError'); if(err)err.textContent='Could not save. Your checks are still on this page and were not stored. '+(e.message||'');
+ }finally{saving=false;updateInterestStatus()}
+}
+function isIos(){const ua=navigator.userAgent||'';return /iPad|iPhone|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)}
+function isStandalone(){return window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true}
+function renderInstall(){
+ const base=' Sign-in stays the browser’s username and password prompt. An icon is not a separate account, an APK, or an App Store app. Jobs, files, and interests are not stored for offline use.';
+ if(isStandalone())$('installMsg').textContent='Opened from the installed icon.'+base;
+ else if(isIos())$('installMsg').textContent='On iPhone or iPad, open this site in Safari, tap the Share button, then Add to Home Screen. Safari does not offer an automatic install button. The icon is a website shortcut, not an App Store app. iOS may ask for the tracker username and password again.'+base;
+ else $('installMsg').textContent='This browser has not offered an install prompt. Use the site in this tab. There is no APK and no App Store download. If Chrome or Edge offers install, a button will show here.'+base;
+}
+function showInstallButton(){
+ const slot=$('installAction'); if(!slot||slot.querySelector('button'))return;
+ const btn=document.createElement('button'); btn.type='button'; btn.id='installBtn'; btn.textContent='Install app';
+ btn.onclick=async()=>{
+  if(!deferredPrompt)return; btn.disabled=true;
+  try{
+   deferredPrompt.prompt();
+   const choice=await deferredPrompt.userChoice; deferredPrompt=null;
+   if(choice&&choice.outcome==='accepted'){btn.remove();$('installMsg').textContent='Install started in the browser. Sign-in is still the browser prompt, and job data is not kept offline.'}
+   else{btn.disabled=false;$('installMsg').textContent='Install was dismissed. You can use the browser menu if it still offers install. There is no separate APK or App Store app.'}
+  }catch(e){btn.disabled=false;$('installMsg').textContent='This browser did not open an install prompt.'}
+ };
+ slot.appendChild(btn);
+ $('installMsg').textContent='This browser offered an install prompt. The button uses that prompt. There is no APK or App Store download. Sign-in stays the browser’s username and password prompt.';
+}
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;showInstallButton()});
+window.addEventListener('appinstalled',()=>{deferredPrompt=null;const btn=$('installBtn');if(btn)btn.remove();$('installMsg').textContent='The browser accepted the install. Open the icon from your home screen or app list. Sign-in is still the browser prompt.'});
+function setupServiceWorker(){if(!('serviceWorker' in navigator))return;navigator.serviceWorker.register('/sw.js',{scope:'/',updateViaCache:'none'}).catch(()=>{})}
+$('logoutBtn').onclick=async()=>{
+ D=[];
+ try{
+  if(navigator.serviceWorker){const reg=await navigator.serviceWorker.getRegistration();if(reg&&reg.active)reg.active.postMessage({type:'LOGOUT_CLEAR'})}
+  if(window.caches){const keys=await caches.keys();await Promise.all(keys.map(k=>caches.delete(k)))}
+ }catch(e){}
+ location.assign('/logout');
+};
+renderInstall();setupServiceWorker();
+load();
+</script></body></html>
