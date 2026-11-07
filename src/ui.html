@@ -97,6 +97,17 @@ details.more{margin-top:16px}details.more summary{cursor:pointer;font-size:13px;
 .course a{color:var(--blue)}
 .pill{display:inline-block;font-size:11px;padding:2px 7px;border-radius:99px;background:#fff7ed;color:#9a3412;border:1px solid #fed7aa;margin-right:6px}
 .pill.reg{background:#fef2f2;color:#991b1b;border-color:#fecaca}
+.pill.fit-current{background:#dcfce7;color:#166534;border-color:#bbf7d0}
+.pill.fit-portfolio{background:#e8f0fe;color:#1a56db;border-color:#c7d7fd}
+.pill.fit-conditional{background:#fff7ed;color:#9a3412;border-color:#fed7aa}
+.pill.fit-earlier{background:#f3f4f6;color:#4b5563;border-color:#e5e7eb}
+.ifilters{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 12px}
+.ifilters label{display:block;font-size:13px;font-weight:650;margin-bottom:8px}
+.ifilters input[type=search]{width:100%;max-width:480px;height:44px;border:1px solid #e1e4e8;border-radius:8px;padding:8px 10px;font:inherit}
+.tiers{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.tiers button{min-height:44px;border:1px solid #e1e4e8;background:#fff;border-radius:999px;padding:8px 12px;font-size:13px}
+.tiers button.on{background:#111;color:#fff;border-color:#111}
+.shown{margin:8px 0 0;color:var(--mut);font-size:12.5px}
 .savebar{position:sticky;bottom:0;z-index:5;background:#fafafa;border-top:1px solid var(--line);box-shadow:0 -6px 16px rgba(250,250,250,.95);padding:12px 0 16px;display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
 .save-copy{flex:1;min-width:220px}
 .save-copy p{margin:0 0 4px}
@@ -129,7 +140,7 @@ details.more{margin-top:16px}details.more summary{cursor:pointer;font-size:13px;
 </div>
 <div class="ov" id="ov"></div><aside class="dr" id="dr" aria-hidden="true"></aside>
 <script>
-let D=[],META={},tab='all',cur=null,dataLoadError='',prefsLoaded=false,prefsLoadError='',interestsBuilt=false,saving=false,deferredPrompt=null;
+let D=[],META={},tab='all',cur=null,dataLoadError='',prefsLoaded=false,prefsLoadError='',interestsBuilt=false,saving=false,deferredPrompt=null,interestTier='all',interestQuery='';
 let serverPrefs={configured:false,nocs:[],storage_state:'missing',catalogue:{roles:[],courses:{},exclusions:[]},selection_meaning:'not_configured',updated_at:null};
 let draft=new Set();
 const $=id=>document.getElementById(id);
@@ -316,19 +327,54 @@ function savedSet(){return new Set(serverPrefs.configured?serverPrefs.nocs||[]:[
 function dirty(){return prefsLoaded&&!setsEqual(draft,savedSet())}
 function canSave(){if(!prefsLoaded||saving)return false;if(!serverPrefs.configured)return true;return dirty()}
 function liList(items){return '<ul>'+(items||[]).map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>'}
+function courseKind(c){
+ const text=((c.credential||'')+' '+(c.verification||'')).toLowerCase();
+ if(/not a certificate|training resource only|public documentation|none promised|no professional certification/.test(text)) return 'Training resource, not a promised certificate';
+ return 'Optional online learning';
+}
 function courseBlock(id){
  const c=(serverPrefs.catalogue.courses||{})[id]; if(!c)return '';
- return `<div class="course"><span class="pill">Optional online learning</span> <b>${esc(c.title)}</b><div class="c">${esc(c.provider)}</div><div><a href="${esc(c.url)}" target="_blank" rel="noopener noreferrer">${esc(c.url)}</a></div><p>${esc(c.credential||'')}</p><p>${esc(c.languages||'')}</p><p>${esc(c.price_note||'')}</p></div>`;
+ return `<div class="course"><span class="pill">${esc(courseKind(c))}</span> <b>${esc(c.title)}</b><div class="c">${esc(c.provider)}</div><div><a href="${esc(c.url)}" target="_blank" rel="noopener noreferrer">${esc(c.url)}</a></div><p>${esc(c.credential||'')}</p>${c.languages?`<p>${esc(c.languages)}</p>`:''}<p>${esc(c.price_note||'')}</p>${c.link_note?`<p>${esc(c.link_note)}</p>`:''}</div>`;
+}
+function fitOf(role){
+ const tier=role.fit_tier||'';
+ if(tier==='current CV fit') return {id:'current', label:'Current CV fit', note:'Recorded transferable experience is listed below. That is not proof every employer requirement is met, and it is not a qualification, a job, or a visa.'};
+ if(tier==='portfolio or further training') return {id:'portfolio', label:'Portfolio or further training', note:'Preparation is still needed. These notes do not invent professional experience in this occupation.'};
+ if(tier==='conditional') return {id:'conditional', label:'Conditional', note:'Use this only when the posting duties match skills that are actually documented. The gaps below are not filled in.'};
+ return {id:'earlier', label:'Earlier catalogue', note:'Kept from the previous list. No new fit claim was added for this card.'};
+}
+function visibleRoles(){
+ const q=interestQuery.trim().toLowerCase();
+ return ((serverPrefs.catalogue||{}).roles||[]).filter(role=>{
+  if(interestTier!=='all' && fitOf(role).id!==interestTier) return false;
+  if(!q) return true;
+  const hay=[role.noc, role.official_title, role.display_title, ...(role.also_called||[])].join(' ').toLowerCase();
+  return q.split(/\s+/).every(word=>hay.includes(word));
+ });
 }
 function roleCard(role){
  const id='interest-'+role.noc, checked=draft.has(role.noc)?' checked':'';
  const cat=serverPrefs.catalogue||{};
+ const fit=fitOf(role);
  const warning=role.screening_warning?`<div class="warnbox">${esc(role.screening_warning)}</div>`:'';
  const reg=role.noc==='22220'?'<p><span class="pill reg">Regulatory credential</span> The Saskatchewan registration named on the NOC profile is not granted by the courses on this card.</p>':'';
  const lift=(role.noc==='14400'||role.noc==='75101'||role.noc==='65102')&&cat.forklift_note?`<div class="warnbox"><b>In-person equipment training.</b> ${esc(cat.forklift_note)} ${(cat.forklift_sources||[]).map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title||s.url)}</a>`).join(' ')}</div>`:'';
  const licence=role.noc==='14400'&&cat.licence_note?`<p>${esc(cat.licence_note)}</p>`:'';
+ const support=(role.cv_support||[]).length?`<h4>Recorded support</h4>${liList(role.cv_support)}<p class="c">${esc(fit.note)}</p>`:'';
+ const gaps=(role.skill_gaps||[]).length?`<h4>Not established</h4>${liList(role.skill_gaps)}<p class="c">These are gaps. They are not treated as experience you already have.</p>`:'';
  const sources=(role.source_urls||[]).map(u=>`<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">Official NOC ${esc(role.noc)} profile</a>`).join(' ');
- return `<article class="role"><label class="role-top" for="${id}"><input type="checkbox" id="${id}" value="${esc(role.noc)}"${checked}><span><h3>${esc(role.display_title)}</h3><span class="subline">Official NOC 2021 title: ${esc(role.official_title)} · code <span class="noc-code">${esc(role.noc)}</span></span></span></label><p>${esc(role.informal_fr||'')} <span class="c">${esc(role.informal_fr_note||'')}</span></p><p>${esc(role.description||'')}</p><h4>Also called</h4><p>${esc((role.also_called||[]).join(' · '))}</p><h4>Typical skills</h4>${liList(role.skills)}<p class="c">Plain-language summary of official duties, not an extra legal list.</p><h4>Employment requirements on the NOC profile</h4>${liList(role.employment_requirements)}<p class="c">${esc(role.requirements_note||'')}</p>${warning}${reg}${lift}${licence}<h4>Optional online courses</h4><p class="c">These are learning options. A completion certificate is not a professional licence, a regulatory credential, or in-person employer training, and it does not promise a job or a visa.</p>${(role.course_ids||[]).map(courseBlock).join('')}<h4>Source</h4><p>${sources}</p></article>`;
+ const fr=role.informal_fr?`<p>${esc(role.informal_fr)} <span class="c">${esc(role.informal_fr_note||'')}</span></p>`:'';
+ return `<article class="role" data-noc="${esc(role.noc)}"><label class="role-top" for="${id}"><input type="checkbox" id="${id}" value="${esc(role.noc)}"${checked}><span><h3>${esc(role.display_title)}</h3><span class="subline"><span class="pill fit-${fit.id}">${esc(fit.label)}</span> Official NOC 2021 title: ${esc(role.official_title)} · code <span class="noc-code">${esc(role.noc)}</span></span></span></label>${fr}<p>${esc(role.description||'')}</p><h4>Also called</h4><p>${esc((role.also_called||[]).join(' · '))}</p><h4>Typical skills</h4>${liList(role.skills)}<p class="c">Plain-language summary of official duties, not an extra legal list.</p>${support}${gaps}<h4>Employment requirements on the NOC profile</h4>${liList(role.employment_requirements)}<p class="c">${esc(role.requirements_note||'')}</p>${warning}${reg}${lift}${licence}<h4>Optional online courses</h4><p class="c">These are learning options. A completion certificate is not a professional licence, a regulatory credential, or in-person employer training, and it does not promise a job, a visa, or sponsorship.</p>${(role.course_ids||[]).map(courseBlock).join('')}<h4>Source</h4><p>${sources}</p></article>`;
+}
+function bindRoleChecks(){
+ $('roleList').querySelectorAll('input[type=checkbox]').forEach(input=>input.addEventListener('change',()=>{if(input.checked)draft.add(input.value);else draft.delete(input.value);const err=$('saveError');if(err)err.textContent='';updateInterestStatus()}));
+}
+function paintRoles(){
+ const shown=visibleRoles();
+ const total=((serverPrefs.catalogue||{}).roles||[]).length;
+ $('roleList').innerHTML=shown.length?shown.map(roleCard).join(''):'<p class="empty">No roles match this filter. Checked roles that are hidden are still stored when you save.</p>';
+ $('interestShown').textContent='Showing '+shown.length+' of '+total+' roles. New roles start unchecked. Saving includes every checked role, including ones hidden by this filter.';
+ bindRoleChecks();
 }
 function updateInterestStatus(){
  const count=$('interestCount'),hint=$('saveHint'),btn=$('saveInterests'),status=$('saveStatus');
@@ -347,10 +393,13 @@ function updateInterestStatus(){
 function buildInterestCards(){
  const cat=serverPrefs.catalogue||{roles:[],exclusions:[]};
  const exclusions=(cat.exclusions||[]).map(x=>'<li>'+esc(x)+'</li>').join('');
- $('interestRoot').innerHTML=`<div class="intro"><h2>Job interests</h2><p>${esc(cat.promise_note||'Saving a role does not submit an application or promise a job, a visa, or a qualification.')}</p><p>${esc(cat.exclusion_note||'')}</p><ul>${exclusions}</ul></div><div class="roles">${(cat.roles||[]).map(roleCard).join('')}</div><div class="savebar"><div class="save-copy"><p id="interestCount"></p><p id="saveStatus" role="status" aria-live="polite"></p><p id="saveError" role="alert"></p></div><button type="button" id="saveInterests">Save interests</button><span id="saveHint"></span></div>`;
- $('interestRoot').querySelectorAll('input[type=checkbox]').forEach(input=>input.addEventListener('change',()=>{if(input.checked)draft.add(input.value);else draft.delete(input.value);$('saveError').textContent='';updateInterestStatus()}));
+ const tiers=[['all','All roles'],['current','Current CV fit'],['portfolio','Portfolio or training'],['conditional','Conditional'],['earlier','Earlier catalogue']];
+ $('interestRoot').innerHTML=`<div class="intro"><h2>Job interests</h2><p>${esc(cat.promise_note||'Saving a role does not submit an application or promise a job, a visa, or a qualification.')}</p><p>${esc(cat.fit_note||'')}</p><p>${esc(cat.exclusion_note||'')}</p><ul>${exclusions}</ul></div><div class="ifilters"><label for="interestQ">Search roles by title, alias, or NOC code</label><input id="interestQ" type="search" autocomplete="off" placeholder="Example: data entry, 21234, email support"><div class="tiers" role="group" aria-label="Filter by fit">${tiers.map(t=>`<button type="button" data-tier="${t[0]}" class="${interestTier===t[0]?'on':''}">${t[1]}</button>`).join('')}</div><p id="interestShown" class="shown"></p></div><div class="roles" id="roleList"></div><div class="savebar"><div class="save-copy"><p id="interestCount"></p><p id="saveStatus" role="status" aria-live="polite"></p><p id="saveError" role="alert"></p></div><button type="button" id="saveInterests">Save interests</button><span id="saveHint"></span></div>`;
+ $('interestQ').value=interestQuery;
+ $('interestQ').addEventListener('input',()=>{interestQuery=$('interestQ').value;paintRoles()});
+ $('interestRoot').querySelectorAll('[data-tier]').forEach(button=>button.onclick=()=>{interestTier=button.dataset.tier;$('interestRoot').querySelectorAll('[data-tier]').forEach(el=>el.classList.toggle('on',el===button));paintRoles()});
  $('saveInterests').onclick=saveInterests;
- interestsBuilt=true; updateInterestStatus();
+ interestsBuilt=true; paintRoles(); updateInterestStatus();
 }
 function renderInterests(){if(!interestsBuilt)buildInterestCards();else updateInterestStatus()}
 async function saveInterests(){

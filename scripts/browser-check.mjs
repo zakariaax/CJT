@@ -71,11 +71,15 @@ if (await desktop.page.locator("#interestRoot input:checked").count()) fail("a r
 await desktop.page.locator("label[for=interest-13100]").click();
 await desktop.page.locator("label[for=interest-22221]").click();
 const unsaved = await desktop.page.locator("#interestCount").innerText();
-if (!/2 of 8 selected/.test(unsaved) || !/unsaved/i.test(unsaved)) fail("selection count did not show unsaved edits: " + unsaved);
-await desktop.page.locator("#interest-13100").scrollIntoViewIfNeeded();
+if (!/2 of 16 selected/.test(unsaved) || !/unsaved/i.test(unsaved)) fail("selection count did not show unsaved edits: " + unsaved);
+if (await desktop.page.locator("#interest-21234").isChecked()) fail("a new role was preselected");
+await desktop.page.getByRole("button", { name: "Current CV fit" }).click();
+await desktop.page.waitForSelector("#interest-14111");
+if (await desktop.page.locator("#interest-21234").count()) fail("portfolio role stayed visible in the current-fit filter");
+await desktop.page.locator("#interest-22221").scrollIntoViewIfNeeded();
 await shot(desktop.page, "desktop-interests-unsaved.png");
 await desktop.page.locator("#saveInterests").click();
-await desktop.page.waitForFunction(() => /Saved 2 of 8/.test(document.querySelector("#saveStatus")?.textContent || ""));
+await desktop.page.waitForFunction(() => /Saved 2 of 16/.test(document.querySelector("#saveStatus")?.textContent || ""));
 await desktop.page.locator("#interest-22221").scrollIntoViewIfNeeded();
 await shot(desktop.page, "desktop-interests-saved.png");
 
@@ -126,11 +130,10 @@ await shot(mobile.page, "mobile-all-jobs.png");
 await mobile.page.locator("tbody tr.job").first().scrollIntoViewIfNeeded();
 await shot(mobile.page, "mobile-job-cards.png");
 await mobile.page.getByRole("tab", { name: /Job interests/ }).click();
-await mobile.page.waitForSelector("#interest-14400");
-await mobile.page.locator("#interest-14400").scrollIntoViewIfNeeded();
+await mobile.page.waitForSelector("#interestQ");
+await mobile.page.locator("#interestQ").scrollIntoViewIfNeeded();
 await shot(mobile.page, "mobile-job-interests.png");
-const labelFor = await mobile.page.locator("label[for=interest-14400]").count();
-if (!labelFor) fail("role checkbox has no label");
+if (!(await mobile.page.locator("label[for=interest-14111]").count())) fail("role checkbox has no label");
 if (mobile.errors.length) fail("mobile page errors:\n" + mobile.errors.join("\n"));
 
 await browser.close();

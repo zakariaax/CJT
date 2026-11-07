@@ -16,7 +16,7 @@ The routine must branch on `storage_state` and `selection_meaning`. `nocs: []` i
 
 `storage_state` is `missing`. `configured` is false. `selection_meaning` is `not_configured`.
 
-Do not search. Do not fill in all eight NOCs. Do not copy the person's past applications into this list.
+Do not search. Do not fill in all sixteen NOCs. Do not copy the person's past applications into this list.
 
 ### Saved empty
 
@@ -30,7 +30,9 @@ Search zero NOC groups. Do not fall back to every role.
 
 Search only those NOC 2021 codes. Then drop postings whose duties are in `match_guidance.exclusions_always_apply`, even when the code matches. The allowed codes are:
 
-`13100`, `13110`, `22221`, `22220`, `62010`, `14400`, `75101`, `65102`.
+`13100`, `13110`, `22221`, `22220`, `62010`, `14400`, `75101`, `65102`, `21234`, `21232`, `22222`, `21233`, `21223`, `14111`, `14100`, `64409`.
+
+Adding a code to this list does not change a stored document. A GET leaves `nocs` and `updated_at` as they were saved. New codes stay unselected until a person saves them. `not_configured` is still not a search of all sixteen.
 
 Match the posting's NOC code. `aliases_by_noc` is a hint for a posting that has **no** code: the words may point at one of these codes, and the duties still have to be checked. Do not require the job title to equal `official_title` or `display_title`. Do not treat an alias hit as enough on its own.
 
@@ -58,7 +60,7 @@ Example, after the person saves two roles:
   "selection_meaning": "search_only_these_nocs",
   "empty_means": "no_searches",
   "missing_means": "not_configured_do_not_search_and_do_not_assume_all",
-  "allowed_nocs": ["13100", "13110", "22221", "22220", "62010", "14400", "75101", "65102"],
+  "allowed_nocs": ["13100", "13110", "22221", "22220", "62010", "14400", "75101", "65102", "21234", "21232", "22222", "21233", "21223", "14111", "14100", "64409"],
   "aliases_by_noc": {
     "13100": {
       "official_title": "Administrative officers",

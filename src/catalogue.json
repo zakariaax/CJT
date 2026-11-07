@@ -1,7 +1,7 @@
 {
   "checked_date": "2026-11-07",
   "noc_version": "2021 Version 1.0",
-  "summary_note": "Descriptions and skills are plain-language summaries of the official NOC main duties. Employment requirements below were copied from the official English profiles on 2026-11-07. The linked profile is the source if a posting disagrees.",
+  "summary_note": "The first eight roles stay in the catalogue. Two of them have more aliases and a fit note. Eight further NOC 2021 groups were added from official profiles checked on 2026-11-07. Descriptions are plain-language duty summaries. Employment requirements are quoted from those profiles.",
   "promise_note": "Saving a role does not submit an application, enroll you in a course, or promise a job, a visa, a licence, or that you meet an employer's requirements.",
   "exclusions": [
     "Restaurant and food service",
@@ -51,7 +51,10 @@
         "Project management certification may be required by some employers."
       ],
       "requirements_note": "Quoted from the official NOC 2021 employment-requirements section on 2026-11-07. Employers can differ. A course below does not by itself meet these requirements.",
-      "course_ids": ["excel", "customer_service"],
+      "course_ids": [
+        "excel",
+        "customer_service"
+      ],
       "source_urls": [
         "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=13100&version=2021.0"
       ],
@@ -83,7 +86,10 @@
         "Completion of a one- or two-year college or other program for administrative assistants or secretaries, or previous clerical experience, is required."
       ],
       "requirements_note": "Quoted from the official NOC 2021 employment-requirements section on 2026-11-07, including the official either/or between the college program and previous clerical experience. Employers can differ.",
-      "course_ids": ["excel", "customer_service"],
+      "course_ids": [
+        "excel",
+        "customer_service"
+      ],
       "source_urls": [
         "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=13110&version=2021.0"
       ],
@@ -92,7 +98,7 @@
     {
       "noc": "22221",
       "official_title": "User support technicians",
-      "display_title": "IT support / Help desk technician",
+      "display_title": "IT / application / email support",
       "informal_fr": "Technicien de soutien informatique",
       "informal_fr_note": "Informal French label, not the official French NOC title.",
       "also_called": [
@@ -100,50 +106,75 @@
         "Help desk technician",
         "Service desk analyst",
         "Desktop support analyst",
-        "Information technology (IT) support technician",
-        "Technical support analyst"
+        "IT support technician",
+        "Technical support analyst",
+        "Application support technician",
+        "Software technical support analyst",
+        "Email support technician",
+        "Microsoft 365 support technician",
+        "Google Workspace support technician",
+        "Domain support technician"
       ],
-      "description": "Diagnose users' hardware and software problems, explain solutions, and record support incidents.",
+      "description": "Provide first-line help to users, diagnose hardware/software/communications problems, explain solutions and maintain problem-resolution logs.",
       "skills": [
-        "Technical troubleshooting",
-        "Hardware and operating systems",
-        "Basic networking",
-        "User communication and training",
-        "Support documentation"
+        "Troubleshooting",
+        "User communication",
+        "Support documentation",
+        "Email and application support",
+        "Basic operating systems/networking"
       ],
       "employment_requirements": [
         "Completion of a college program in computer science, computer programming or network administration is usually required.",
         "College or other courses in computer programming or network administration are usually required.",
         "Certification or training provided by software vendors may be required by some employers."
       ],
-      "requirements_note": "Quoted from the official NOC 2021 employment-requirements section on 2026-11-07. Vendor training named by an employer is separate from the optional online courses below.",
-      "course_ids": ["google_it", "cisco_networking"],
-      "source_urls": [
-        "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=22221&version=2021.0"
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements text checked on 2026-11-07. Employers can differ. A course does not by itself meet these requirements.",
+      "course_ids": [
+        "google_it",
+        "m365_training",
+        "customer_service"
       ],
-      "screening_warning": ""
+      "source_urls": [
+        "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=22221&version=2021.0",
+        "https://www23.statcan.gc.ca/imdb/p3VD.pl?CLV=5&CPV=22221&CST=01052021&CVD=1322870&Function=getVD&MLV=5&TVD=1322554"
+      ],
+      "screening_warning": "Prioritize email/domain/application-focused junior roles. No invented hardware, Windows Server or Active Directory experience. Application support belongs here only for first-line user troubleshooting, not engineering/system-analysis duties.",
+      "fit_tier": "current CV fit",
+      "cv_support": [
+        "Almost-daily domain/email/website client support",
+        "Microsoft 365/Google Workspace user and mailbox management",
+        "DNS and email authentication"
+      ],
+      "skill_gaps": [
+        "Ticketing platforms",
+        "Desktop troubleshooting experience not established",
+        "Active Directory not documented"
+      ]
     },
     {
       "noc": "22220",
       "official_title": "Computer network and web technicians",
-      "display_title": "Network support technician / Network administrator",
+      "display_title": "Web / hosting / junior network support",
       "informal_fr": "Technicien de réseau / Administrateur de réseau",
       "informal_fr_note": "Informal French label, not the official French NOC title.",
       "also_called": [
         "Computer network technician",
         "Network support technician",
-        "Network administrator",
-        "Local area network (LAN) technician",
-        "Network system administrator",
-        "Web technician"
+        "Junior network technician",
+        "LAN technician",
+        "Web technician",
+        "Web hosting technician",
+        "Hosting support technician",
+        "IT operations technician",
+        "Data centre operator"
       ],
-      "description": "Install and maintain networks, workstations, and web servers, and monitor performance, security, and backups.",
+      "description": "Maintain/troubleshoot networks and workstations or web-server systems; monitor performance, backups, security and connectivity; perform basic scripting.",
       "skills": [
-        "LAN and WAN troubleshooting",
-        "Hardware and software installation",
-        "Network administration",
-        "Backups and recovery",
-        "Security monitoring",
+        "DNS",
+        "TCP/IP and LAN/WAN",
+        "Server administration",
+        "Backups",
+        "Monitoring",
         "Basic scripting"
       ],
       "employment_requirements": [
@@ -151,12 +182,27 @@
         "Certification or training provided by software vendors may be required by some employers.",
         "Registration with a regulatory body is required in Saskatchewan."
       ],
-      "requirements_note": "Quoted from the official NOC 2021 employment-requirements section on 2026-11-07. The profile does not name the Saskatchewan regulator on that page. Verify the current body and which work it covers before relying on it. Optional online courses do not replace that registration, a required diploma, or employer-required vendor certification.",
-      "course_ids": ["cisco_networking", "google_it"],
-      "source_urls": [
-        "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=22220&version=2021.0"
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements text checked on 2026-11-07. Employers can differ. A course does not by itself meet these requirements.",
+      "course_ids": [
+        "cisco_networking",
+        "google_it",
+        "cs50_python"
       ],
-      "screening_warning": "Registration with a regulatory body is an official NOC requirement in Saskatchewan for this unit group. That is a regulatory credential, not a completion certificate from the courses linked here."
+      "source_urls": [
+        "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=22220&version=2021.0",
+        "https://www23.statcan.gc.ca/imdb/p3VD.pl?CLV=5&CPV=22220&CST=01052021&CVD=1322870&Function=getVD&MLV=5&TVD=1322554"
+      ],
+      "screening_warning": "Hosting customer support alone may be 22221. IT operations depends on duties; no blanket alias for systems engineering or senior administrator work. NOC states regulatory registration required in Saskatchewan; verify scope/body separately.",
+      "fit_tier": "conditional",
+      "cv_support": [
+        "DNS/domain management",
+        "Email administration",
+        "Python automation"
+      ],
+      "skill_gaps": [
+        "No documented production Linux/web-server administration",
+        "No demonstrated routing/switching, enterprise network monitoring or backup operations"
+      ]
     },
     {
       "noc": "62010",
@@ -186,7 +232,10 @@
         "Previous retail sales experience as a retail salesperson or sales clerk, cashier, telemarketer, door-to-door salesperson or rental agent is usually required."
       ],
       "requirements_note": "Quoted from the official NOC 2021 employment-requirements section on 2026-11-07. The telemarketer and door-to-door wording is part of that official sentence. Those duties are still excluded from future searches for this tracker.",
-      "course_ids": ["customer_service", "excel"],
+      "course_ids": [
+        "customer_service",
+        "excel"
+      ],
       "source_urls": [
         "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=62010&version=2021.0"
       ],
@@ -221,7 +270,11 @@
         "A driver's licence may be required."
       ],
       "requirements_note": "Quoted from the official NOC 2021 employment-requirements section on 2026-11-07. A forklift certificate or driver's licence, when an employer requires one, is separate from the optional online courses below. See the forklift and licence notes.",
-      "course_ids": ["whmis", "manual_handling", "excel"],
+      "course_ids": [
+        "whmis",
+        "manual_handling",
+        "excel"
+      ],
       "source_urls": [
         "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=14400&version=2021.0"
       ],
@@ -253,7 +306,10 @@
         "Physical strength is required for manual material handlers who work with heavy materials."
       ],
       "requirements_note": "Quoted from the official NOC 2021 employment-requirements section on 2026-11-07. The official index also lists forklift operators and grain-elevator work. Those are not entry-level aliases, and the online courses here do not grant them.",
-      "course_ids": ["manual_handling", "whmis"],
+      "course_ids": [
+        "manual_handling",
+        "whmis"
+      ],
       "source_urls": [
         "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=75101&version=2021.0"
       ],
@@ -286,11 +342,377 @@
         "Some secondary school education is usually required."
       ],
       "requirements_note": "Quoted from the official NOC 2021 employment-requirements section on 2026-11-07. The official duties also say some workers may operate forklifts or other powered industrial trucks. That is employer equipment training, not something these online courses grant.",
-      "course_ids": ["manual_handling", "customer_service", "whmis"],
+      "course_ids": [
+        "manual_handling",
+        "customer_service",
+        "whmis"
+      ],
       "source_urls": [
         "https://noc.esdc.gc.ca/Structure/NOCProfile?GocTemplateCulture=en-CA&code=65102&version=2021.0"
       ],
       "screening_warning": "The official index includes bakery assistant, meat cutter helper, meat wrapper, and other food-store titles. Use stock, shelf, price, and non-food order-filling duties only. Bakery, meat preparation, and kitchen tasks stay excluded. Order picker is indexed here; material-moving warehouse work may be 75101 instead. Compare duties."
+    },
+    {
+      "noc": "21234",
+      "official_title": "Web developers and programmers",
+      "display_title": "Junior web / WordPress developer",
+      "also_called": [
+        "Junior web developer",
+        "Web programmer",
+        "Website developer",
+        "Junior WordPress developer",
+        "Front-end web developer - junior"
+      ],
+      "description": "Write, integrate and test website/web-application code; maintain functionality and improve quality, security and user experience.",
+      "skills": [
+        "HTML/CSS/JavaScript",
+        "Code debugging",
+        "Git",
+        "Responsive layouts",
+        "Website testing",
+        "PHP for WordPress roles"
+      ],
+      "employment_requirements": [
+        "A bachelor's degree, usually in computer science, computer programming, web development or software engineering or completion of a college program in computer science or related field is usually required.",
+        "Experience as a computer programmer is usually required."
+      ],
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements text checked on 2026-11-07. Employers can differ. A course does not by itself meet these requirements.",
+      "fit_tier": "portfolio or further training",
+      "cv_support": [
+        "WordPress/Joomla/WooCommerce personal projects",
+        "Basic web-language coursework",
+        "Relevant computing degree"
+      ],
+      "skill_gaps": [
+        "No professional developer experience documented",
+        "Need independently explainable code portfolio",
+        "PHP/custom themes/plugins not documented"
+      ],
+      "course_ids": [
+        "wordpress_developer",
+        "cs50_web"
+      ],
+      "source_urls": [
+        "https://www23.statcan.gc.ca/imdb/p3VD.pl?CLV=5&CPV=21234&CST=01052021&CVD=1322870&Function=getVD&MLV=5&TVD=1322554"
+      ],
+      "screening_warning": "A CMS content editor is not automatically a developer. Official profile usually requires programmer experience. Front-end title must involve website programming."
+    },
+    {
+      "noc": "21232",
+      "official_title": "Software developers and programmers",
+      "display_title": "Junior software / Python developer",
+      "also_called": [
+        "Junior software developer",
+        "Junior Python developer",
+        "Application programmer",
+        "Junior software programmer"
+      ],
+      "description": "Design, write, test, correct and document software and application code; analyze effects of program changes.",
+      "skills": [
+        "Python",
+        "Debugging",
+        "Unit testing",
+        "Git",
+        "APIs",
+        "SQL",
+        "Documentation"
+      ],
+      "employment_requirements": [
+        "A bachelor's degree in computer science or software engineering or in another discipline with a significant programming component or completion of a college program in computer science or related field is usually required.",
+        "Experience as a computer programmer is usually required."
+      ],
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements text checked on 2026-11-07. Employers can differ. A course does not by itself meet these requirements.",
+      "fit_tier": "portfolio or further training",
+      "cv_support": [
+        "Python scripts for domain/email tasks with AI assistance",
+        "Computing/mathematics degree",
+        "Basic programming and SQL coursework"
+      ],
+      "skill_gaps": [
+        "No professional application developer experience established",
+        "Need independently explainable projects, tests, version control and role-specific frameworks"
+      ],
+      "course_ids": [
+        "cs50_python",
+        "cs50_sql"
+      ],
+      "source_urls": [
+        "https://www23.statcan.gc.ca/imdb/p3VD.pl?CLV=5&CPV=21232&CST=01052021&CVD=1322870&Function=getVD&MLV=5&TVD=1322554"
+      ],
+      "screening_warning": "AI-assisted scripts are not proof of independent full application development. Usually programmer experience required. Python web/system jobs can map to different NOCs based on duties."
+    },
+    {
+      "noc": "22222",
+      "official_title": "Information systems testing technicians",
+      "display_title": "Junior manual QA / software tester",
+      "also_called": [
+        "Junior manual QA tester",
+        "Software testing technician",
+        "Application tester",
+        "Junior software tester",
+        "User acceptance tester",
+        "UAT tester"
+      ],
+      "description": "Develop/document and execute test plans; record results, identify defects and track proposed fixes.",
+      "skills": [
+        "Test cases",
+        "Reproduction steps",
+        "Bug reporting",
+        "Regression testing",
+        "Defect tracking",
+        "Basic API/SQL testing"
+      ],
+      "employment_requirements": [
+        "Completion of a college program in computer science, computer programming or network administration is usually required.",
+        "College or other courses in computer programming or network administration are usually required.",
+        "Certification or training provided by software vendors may be required by some employers."
+      ],
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements text checked on 2026-11-07. Employers can differ. A course does not by itself meet these requirements.",
+      "fit_tier": "portfolio or further training",
+      "cv_support": [
+        "Computing education",
+        "Data/content/link accuracy checks are transferable only"
+      ],
+      "skill_gaps": [
+        "No professional software QA documented",
+        "Need test-plan and bug-report samples",
+        "Need practice with defect tracking and test execution"
+      ],
+      "course_ids": [
+        "qa_api",
+        "cs50_python",
+        "cs50_sql"
+      ],
+      "source_urls": [
+        "https://www23.statcan.gc.ca/imdb/p3VD.pl?CLV=5&CPV=22222&CST=01052021&CVD=1322870&Function=getVD&MLV=5&TVD=1322554"
+      ],
+      "screening_warning": "Campaign link checking is not professional software testing. API course is supplemental, not a manual-QA or ISTQB credential. Formal quality-engineering/analyst roles may classify differently."
+    },
+    {
+      "noc": "21233",
+      "official_title": "Web designers",
+      "display_title": "Junior web / WordPress designer",
+      "also_called": [
+        "Junior web designer",
+        "Website designer",
+        "Internet site designer",
+        "WordPress web designer"
+      ],
+      "description": "Create and improve website visual presentation, layout and usability; maintain design standards, integrate features and test designs.",
+      "skills": [
+        "Layout composition",
+        "Typography",
+        "Responsive design",
+        "Accessibility",
+        "Wireframes/prototypes",
+        "WordPress Site Editor"
+      ],
+      "employment_requirements": [
+        "A bachelor's degree in computer science or graphic design or completion or a college program in computer science, graphic arts, or Web design is required.",
+        "Experience as a graphic designer is usually required."
+      ],
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements text checked on 2026-11-07. Employers can differ. A course does not by itself meet these requirements.",
+      "fit_tier": "portfolio or further training",
+      "cv_support": [
+        "Personal CMS websites",
+        "Basic HTML/CSS coursework",
+        "Computing degree"
+      ],
+      "skill_gaps": [
+        "No graphic-design professional experience documented",
+        "Need visual-design portfolio, accessibility and prototyping practice"
+      ],
+      "course_ids": [
+        "wordpress_designer"
+      ],
+      "source_urls": [
+        "https://www23.statcan.gc.ca/imdb/p3VD.pl?CLV=5&CPV=21233&CST=01052021&CVD=1322870&Function=getVD&MLV=5&TVD=1322554"
+      ],
+      "screening_warning": "Official profile requires relevant degree/college education and usually graphic-designer experience. Do not equate merely installing a theme with design expertise. Exclude marketing/SEO campaign duties; coding-heavy website work is 21234."
+    },
+    {
+      "noc": "21223",
+      "official_title": "Database analysts and data administrators",
+      "display_title": "Junior database analyst / database administrator trainee",
+      "also_called": [
+        "Junior database analyst",
+        "Database administrator trainee",
+        "Junior database administrator",
+        "Data administrator - database"
+      ],
+      "description": "Develop database/data-management solutions and models, administer data access/security/backup policies, and use database systems to analyze data.",
+      "skills": [
+        "SQL",
+        "Relational modelling",
+        "Normalization",
+        "DBMS administration",
+        "Data access control",
+        "Backups and recovery",
+        "Stored procedures"
+      ],
+      "employment_requirements": [
+        "A bachelor's degree or college program, usually in computer science, computer engineering, or in mathematics is usually required.",
+        "Computer programming and related experience is usually required."
+      ],
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements text checked on 2026-11-07. Employers can differ. A course does not by itself meet these requirements.",
+      "fit_tier": "portfolio or further training",
+      "cv_support": [
+        "Relevant mathematics/computing degree",
+        "Basic SQL coursework",
+        "Large contact-list cleaning/data handling is transferable only"
+      ],
+      "skill_gaps": [
+        "No production DBA experience documented",
+        "Need database projects, stronger SQL, schema design, security and backup/recovery practice"
+      ],
+      "course_ids": [
+        "cs50_sql",
+        "postgres_tutorial"
+      ],
+      "source_urls": [
+        "https://www23.statcan.gc.ca/imdb/p3VD.pl?CLV=5&CPV=21223&CST=01052021&CVD=1322870&Function=getVD&MLV=5&TVD=1322554"
+      ],
+      "screening_warning": "Lower-priority aspirational option. Spreadsheet/contact-list updating is NOT database administration. Generic data analyst, reporting analyst or data scientist must not be automatically assigned 21223; match actual database design/management duties. Omit senior, architect and lead aliases."
+    },
+    {
+      "noc": "14111",
+      "official_title": "Data entry clerks",
+      "display_title": "Data entry / data accuracy clerk",
+      "also_called": [
+        "Data entry clerk",
+        "Data entry operator",
+        "Data input clerk",
+        "Data control clerk",
+        "Data verification clerk",
+        "Data processing clerk"
+      ],
+      "description": "Capture/import/export information into databases or spreadsheets and check completeness and accuracy.",
+      "skills": [
+        "Accurate data entry",
+        "Excel/Sheets",
+        "Import/export",
+        "Data validation",
+        "Attention to detail",
+        "Confidentiality"
+      ],
+      "employment_requirements": [
+        "Completion of secondary school may be required.",
+        "College or other courses in data entry may be required."
+      ],
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements text checked on 2026-11-07. Employers can differ. A course does not by itself meet these requirements.",
+      "fit_tier": "current CV fit",
+      "cv_support": [
+        "Imported, updated, cleaned and segmented large contact datasets",
+        "Daily spreadsheets",
+        "Data accuracy verification and reporting"
+      ],
+      "skill_gaps": [
+        "Typing speed not measured",
+        "Employer-specific databases",
+        "Advanced Excel functions not established"
+      ],
+      "course_ids": [
+        "excel"
+      ],
+      "source_urls": [
+        "https://www23.statcan.gc.ca/imdb/p3VD.pl?CLV=5&CPV=14111&CST=01052021&CVD=1322870&Function=getVD&MLV=5&TVD=1322554"
+      ],
+      "screening_warning": "Data verification title is a search hint only. This is clerical input/validation, not database design, data science or business analytics. Exclude marketing work even when using customer data."
+    },
+    {
+      "noc": "14100",
+      "official_title": "General office support workers",
+      "display_title": "Office / filing / records clerk",
+      "also_called": [
+        "General office clerk",
+        "Office assistant",
+        "Administrative clerk",
+        "Filing clerk",
+        "Records filing-system clerk",
+        "Document scanning clerk",
+        "Technical records clerk"
+      ],
+      "description": "Prepare and process office documents and correspondence, respond to enquiries, and scan, file, retrieve and track records using established procedures.",
+      "skills": [
+        "Office software",
+        "Document formatting",
+        "Correspondence",
+        "Scanning/filing",
+        "Record retrieval",
+        "Accuracy",
+        "Telephone/email communication"
+      ],
+      "employment_requirements": [
+        "Completion of secondary school is usually required.",
+        "Completion of secondary school or college business or commercial courses is usually required."
+      ],
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements text checked on 2026-11-07. Employers can differ. A course does not by itself meet these requirements.",
+      "fit_tier": "current CV fit",
+      "cv_support": [
+        "Business administration, correspondence, record keeping and reports",
+        "Client/supplier follow-up",
+        "Microsoft 365 and Google Workspace"
+      ],
+      "skill_gaps": [
+        "Formal business/commercial coursework not verified",
+        "Employer-specific document-management systems",
+        "Professional English/French writing may need improvement"
+      ],
+      "course_ids": [
+        "excel",
+        "customer_service"
+      ],
+      "source_urls": [
+        "https://www23.statcan.gc.ca/imdb/p3VD.pl?CLV=5&CPV=14100&CST=01052021&CVD=1322870&Function=getVD&MLV=5&TVD=1322554"
+      ],
+      "screening_warning": "Use routine filing/document processing, not professional records-management policy (12112), medical coding, executive support (13110) or office policy/administration (13100). Exclude farm/food/marketing office duties."
+    },
+    {
+      "noc": "64409",
+      "official_title": "Other customer and information services representatives",
+      "display_title": "Non-sales customer / information service",
+      "also_called": [
+        "Customer service representative - non-sales",
+        "Customer information clerk",
+        "Enquiries clerk",
+        "Customer service contact centre agent",
+        "Customer complaints clerk",
+        "Customer account service representative"
+      ],
+      "description": "Answer enquiries about services, policies and accounts; investigate complaints and process/update service requests and records.",
+      "skills": [
+        "Customer communication",
+        "Complaint resolution",
+        "Account updates",
+        "Accurate records",
+        "Email/telephone etiquette",
+        "Service procedures"
+      ],
+      "employment_requirements": [
+        "Completion of secondary school is usually required.",
+        "Completion of some college or other post-secondary programs may be required.",
+        "Clerical or sales experience may be required."
+      ],
+      "requirements_note": "Quoted from the official NOC 2021 employment-requirements text checked on 2026-11-07. Employers can differ. A course does not by itself meet these requirements.",
+      "fit_tier": "current CV fit",
+      "cv_support": [
+        "Direct client/supplier communication",
+        "Technical enquiries and follow-up",
+        "Administrative records and service coordination"
+      ],
+      "skill_gaps": [
+        "Intermediate English/French may not meet fluent/bilingual requirements",
+        "Contact-centre CRM/tools not documented",
+        "Sector-specific account/billing procedures"
+      ],
+      "course_ids": [
+        "customer_service",
+        "excel"
+      ],
+      "source_urls": [
+        "https://www23.statcan.gc.ca/imdb/p3VD.pl?CLV=5&CPV=64409&CST=01052021&CVD=1322870&Function=getVD&MLV=5&TVD=1322554"
+      ],
+      "screening_warning": "Only non-sales/nonmarketing work. Official group includes promoting goods/services: reject upselling, lead generation, telemarketing, sales quotas and marketing duties. Technical problem diagnosis is generally 22221 instead. Financial-institution customer service is 64400, not this group."
     }
   ],
   "courses": {
@@ -299,55 +721,81 @@
       "provider": "Macquarie University via Coursera",
       "url": "https://www.coursera.org/specializations/excel",
       "kind": "optional_online",
-      "skills": ["Spreadsheets", "Formulas", "Data validation", "Business reports"],
-      "credential": "Optional online course and specialization completion certificate. Not Microsoft Office Specialist certification.",
-      "languages": "Taught in English. The provider page lists 26 languages. Confirm the language in the enrollment screen.",
-      "price_note": "Price is not listed here. Check the provider page before enrolling. Nothing on this tracker enrolls you or approves a purchase.",
+      "skills": [
+        "Spreadsheets",
+        "Formulas",
+        "Data validation",
+        "Error correction",
+        "Charts",
+        "Reports"
+      ],
+      "credential": "Shareable specialization completion certificate after required coursework. Not Microsoft Office Specialist certification.",
+      "price_note": "Provider FAQ says course is not free; enrollment fee/subscription applies, financial aid may be available. Exact price not established.",
       "checked_date": "2026-11-07",
-      "verification": "Provider URL returned HTTP 200 on 2026-11-07. Title, online format, and completion-certificate wording follow the same-day check of the provider page recorded in the upgrade research. This upgrade did not re-read the script-rendered page body."
+      "verification": "Full course page and FAQ read; four-course series, online."
     },
     "customer_service": {
       "title": "Customer Service Skills",
-      "provider": "Alison",
+      "provider": "Alison learning platform",
       "url": "https://alison.com/course/customer-service-skills",
       "kind": "optional_online",
-      "skills": ["Telephone etiquette", "Customer communication", "Complaint handling"],
-      "credential": "Optional online learning. The provider offers a course certificate option that may be purchased. It is not a Canadian occupational licence. Confirm the certificate terms on the provider page before enrolling.",
-      "languages": "The provider page lists English and Spanish.",
-      "price_note": "Price is not listed here. Check the provider page before enrolling. Nothing on this tracker enrolls you or approves a purchase.",
+      "skills": [
+        "Telephone etiquette",
+        "Customer communication",
+        "Complaints",
+        "Stress management"
+      ],
+      "credential": "Optional purchased PDF/printed Alison certificate; free learner record available. Complete assessments under current course rules. Provider how-it-works page inconsistently states 70% and 80%; do not publish a pass percentage without checking enrollment.",
+      "price_note": "Course learning free; certificate optional paid; exact price not established.",
       "checked_date": "2026-11-07",
-      "verification": "Provider URL returned HTTP 200 on 2026-11-07. Course title, languages, and certificate-option wording follow the same-day provider-page check in the upgrade research. No accreditation is claimed."
+      "verification": "Course and how-it-works pages read. Do not repeat platform claims that certificate guarantees employment.",
+      "source_urls": [
+        "https://alison.com/course/customer-service-skills",
+        "https://alison.com/about/how-it-works"
+      ],
+      "link_note": "A fetch of this URL on 2026-11-07 returned HTTP 403. Confirm the page opens before relying on it."
     },
     "google_it": {
-      "title": "Google IT Support Professional Certificate",
-      "provider": "Google via Coursera",
-      "url": "https://www.coursera.org/professional-certificates/google-it-support",
+      "title": "Google IT Support Certificate",
+      "provider": "Google (delivered through Coursera)",
+      "url": "https://grow.google/certificates/it-support/",
       "kind": "optional_online",
-      "skills": ["Troubleshooting", "Hardware", "Operating systems", "Networking", "Customer support", "Security"],
-      "credential": "Optional online professional certificate. Not CompTIA A+ certification. A+ exams are separate. This does not replace a required diploma, experience, or provincial registration.",
-      "languages": "Taught in English. The provider page lists six languages. Check whether French is offered before enrolling.",
-      "price_note": "Price is not listed here. Check the provider page before enrolling. Nothing on this tracker enrolls you or approves a purchase.",
+      "skills": [
+        "Troubleshooting",
+        "Operating systems",
+        "Networking",
+        "System administration",
+        "Security",
+        "Customer care"
+      ],
+      "credential": "Online professional completion certificate with hands-on activities, quizzes and assessments. CompTIA A+ exams are separate.",
+      "price_note": "Google lists USD 49/month after a 7-day trial in US/Canada; other-country pricing may differ. Check local enrollment price. No enrollment or purchase authorized.",
       "checked_date": "2026-11-07",
-      "verification": "Provider URL returned HTTP 200 on 2026-11-07. Online format and completion-credential wording follow the same-day provider-page check in the upgrade research."
+      "verification": "Provider page read; certificate, curriculum, assessments and region-specific price verified. US hiring-consortium claims must not be presented as Canadian sponsorship."
     },
     "cisco_networking": {
       "title": "Networking Basics",
       "provider": "Cisco Networking Academy",
       "url": "https://www.netacad.com/courses/networking-basics",
       "kind": "optional_online",
-      "skills": ["Networking fundamentals"],
-      "credential": "Optional online introductory course. Not CCNA certification. A completion badge or certificate was not established from the readable page, so none is promised.",
-      "languages": "Confirm the languages on the enrollment page.",
-      "price_note": "Price is not listed here. Confirm the current cost on the provider page. Nothing on this tracker enrolls you.",
+      "skills": [
+        "Networking fundamentals"
+      ],
+      "credential": "Introductory online course, not CCNA. Specific badge/certificate conditions not readable; none promised.",
+      "price_note": "Provider page identifies a free computer networking course; certificate/exam costs not established.",
       "checked_date": "2026-11-07",
-      "verification": "Provider URL returned HTTP 200 on 2026-11-07. The upgrade research found the title Networking Basics and could not read the full dynamic lesson text. Do not infer a certificate from that."
+      "verification": "Dynamic page returned title Free Computer Networking Course by Cisco: Start Learning Now; limited body."
     },
     "whmis": {
       "title": "WHMIS for Workers",
       "provider": "Canadian Centre for Occupational Health and Safety (CCOHS)",
       "url": "https://www.ccohs.ca/products/courses/whmis_workers",
       "kind": "optional_online",
-      "skills": ["Hazard labels", "Safety data sheets", "Hazard recognition"],
+      "skills": [
+        "Hazard labels",
+        "Safety data sheets",
+        "Hazard recognition"
+      ],
       "credential": "Online certificate of completion after the course and a final multiple-choice exam. CCOHS says you still need instruction specific to your job, worksite, and safety procedures. This is not a professional licence and not a forklift qualification.",
       "languages": "English and French, as listed on the provider page.",
       "price_note": "Price is not listed here. The provider sells single-seat access. Check the current price on the provider page. Nothing on this tracker approves a purchase.",
@@ -359,12 +807,167 @@
       "provider": "Canadian Centre for Occupational Health and Safety (CCOHS)",
       "url": "https://www.ccohs.ca/products/courses/manual_material",
       "kind": "optional_online",
-      "skills": ["Safe handling", "Lifting risk factors", "Mechanical aids", "Injury prevention"],
+      "skills": [
+        "Safe handling",
+        "Lifting risk factors",
+        "Mechanical aids",
+        "Injury prevention"
+      ],
       "credential": "Online certificate of completion after the course and a final multiple-choice exam. This course is about handling materials by hand. It does not show forklift competence and does not replace employer or equipment-specific training.",
       "languages": "English and French, as listed on the provider page.",
       "price_note": "Price is not listed here. The provider sells single-seat access. Check the current price on the provider page. Nothing on this tracker approves a purchase.",
       "checked_date": "2026-11-07",
       "verification": "Provider page re-read on 2026-11-07. Title, e-course format, English/French, and certificate-of-completion wording were on the page."
+    },
+    "m365_training": {
+      "title": "Microsoft 365 training",
+      "provider": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/training/m365/",
+      "kind": "optional_online",
+      "skills": [
+        "Microsoft product learning paths and modules"
+      ],
+      "credential": "Training resource only; this readable browse page did not establish a particular certificate or exam.",
+      "price_note": "No price established from readable page; do not imply a certification exam is included.",
+      "checked_date": "2026-11-07",
+      "verification": "Page read; generic Browse all training text, limited product detail. Supplemental only."
+    },
+    "cs50_python": {
+      "title": "CS50's Introduction to Programming with Python",
+      "provider": "Harvard CS50 OpenCourseWare",
+      "url": "https://cs50.harvard.edu/python/",
+      "kind": "optional_online",
+      "skills": [
+        "Python",
+        "Debugging",
+        "Unit tests",
+        "Files",
+        "Regular expressions",
+        "Object-oriented programming"
+      ],
+      "credential": "Free CS50 certificate after all required work passes; optional paid edX verified certificate. FAQ requires at least 70% on EACH required assignment, completion of final project and linked course accounts. These are not accredited academic offerings.",
+      "price_note": "OpenCourseWare and CS50 certificate free; edX verified certificate paid, exact fee not verified.",
+      "checked_date": "2026-11-07",
+      "verification": "Course and FAQ read.",
+      "source_urls": [
+        "https://cs50.harvard.edu/python/",
+        "https://cs50.harvard.edu/python/faqs/"
+      ]
+    },
+    "cs50_web": {
+      "title": "CS50's Web Programming with Python and JavaScript",
+      "provider": "Harvard CS50 OpenCourseWare",
+      "url": "https://cs50.harvard.edu/web/",
+      "kind": "optional_online",
+      "skills": [
+        "Python",
+        "JavaScript",
+        "SQL",
+        "Django",
+        "APIs",
+        "UI",
+        "Security"
+      ],
+      "credential": "Optional edX verified certificate route is linked. CS50 FAQ explains free CS50 and paid verified certificates across its courses; follow this course's current assignment/project completion rules.",
+      "price_note": "OpenCourseWare free; verified edX certificate paid, fee not established.",
+      "checked_date": "2026-11-07",
+      "verification": "Course read; prerequisite CS50x or prior programming experience. Not a from-zero HTML course.",
+      "source_urls": [
+        "https://cs50.harvard.edu/web/",
+        "https://cs50.harvard.edu/python/faqs/"
+      ]
+    },
+    "cs50_sql": {
+      "title": "CS50's Introduction to Databases with SQL",
+      "provider": "Harvard CS50 OpenCourseWare",
+      "url": "https://cs50.harvard.edu/sql/",
+      "kind": "optional_online",
+      "skills": [
+        "SQL",
+        "Relational modelling",
+        "Joins",
+        "Normalization",
+        "Indexes",
+        "Constraints"
+      ],
+      "credential": "Optional edX verified certificate route linked; CS50 FAQ explains free CS50 and paid verified certificates across courses. Complete current course work and final project; not a DBA licence.",
+      "price_note": "OpenCourseWare free; verified certificate paid, exact fee not established.",
+      "checked_date": "2026-11-07",
+      "verification": "Course read; seven weeks of material, final project and edX account for submissions.",
+      "source_urls": [
+        "https://cs50.harvard.edu/sql/",
+        "https://cs50.harvard.edu/python/faqs/"
+      ]
+    },
+    "wordpress_developer": {
+      "title": "Beginner WordPress Developer",
+      "provider": "Learn WordPress",
+      "url": "https://learn.wordpress.org/course/beginner-wordpress-developer/",
+      "kind": "optional_online",
+      "skills": [
+        "HTML/CSS/JavaScript/PHP/MySQL",
+        "Themes",
+        "Plugins",
+        "REST API",
+        "Debugging",
+        "Security"
+      ],
+      "credential": "Provider-owned online learning course. Readable page does not establish a professional certification or completion-certificate conditions; none promised.",
+      "price_note": "No price established from this page; no paid purchase implied.",
+      "checked_date": "2026-11-07",
+      "verification": "Full syllabus read; estimated 9 hours."
+    },
+    "wordpress_designer": {
+      "title": "Beginner WordPress Designer",
+      "provider": "Learn WordPress",
+      "url": "https://learn.wordpress.org/course/beginner-wordpress-designer/",
+      "kind": "optional_online",
+      "skills": [
+        "Style guides",
+        "Typography",
+        "Layouts",
+        "Block themes",
+        "Accessibility",
+        "Site Editor"
+      ],
+      "credential": "Online learning course; no professional certification or completion certificate established from readable page.",
+      "price_note": "No price established from this page.",
+      "checked_date": "2026-11-07",
+      "verification": "Full syllabus read; estimated 4 hours."
+    },
+    "qa_api": {
+      "title": "Exploring Service APIs through Test Automation",
+      "provider": "Applitools Test Automation University",
+      "url": "https://testautomationu.applitools.com/exploring-service-apis-through-test-automation/",
+      "kind": "optional_online",
+      "skills": [
+        "API exploration",
+        "Postman",
+        "Test strategy",
+        "Data-driven tests"
+      ],
+      "credential": "Supplemental API-testing course, NOT a manual-QA qualification or ISTQB certification. Site lists Certificates but course completion/certificate conditions not established; none promised.",
+      "price_note": "No price established from readable course page.",
+      "checked_date": "2026-11-07",
+      "verification": "Course outline and transcript read; starts with API testing and Postman then automation."
+    },
+    "postgres_tutorial": {
+      "title": "PostgreSQL Tutorial",
+      "provider": "PostgreSQL Global Development Group",
+      "url": "https://www.postgresql.org/docs/current/tutorial.html",
+      "kind": "optional_online",
+      "skills": [
+        "Relational databases",
+        "SQL",
+        "Joins",
+        "Transactions",
+        "Views"
+      ],
+      "credential": "Public documentation/tutorial, not a certificate.",
+      "price_note": "Public tutorial; no enrollment fee shown.",
+      "checked_date": "2026-11-07",
+      "verification": "Tutorial introduction and contents read; current endpoint resolved to PostgreSQL 18."
     }
-  }
+  },
+  "fit_note": "Current CV fit means recorded transferable experience, not proof that every employer requirement is met. Portfolio or further training means preparation is still needed. Conditional means the posting duties have to match skills that are actually documented. New roles start unchecked. None of these labels selects a role for you."
 }

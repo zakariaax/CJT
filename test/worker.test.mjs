@@ -97,12 +97,51 @@ test("missing preferences are not an empty selection", async () => {
   assert.equal(body.missing_means, "not_configured_do_not_search_and_do_not_assume_all");
   assert.equal(body.nocs.length, 0);
   assert.equal(kv.store.has(PREF), false);
-  assert.deepEqual(body.allowed_nocs, ["13100", "13110", "22221", "22220", "62010", "14400", "75101", "65102"]);
+  assert.deepEqual(body.allowed_nocs, ["13100", "13110", "22221", "22220", "62010", "14400", "75101", "65102", "21234", "21232", "22222", "21233", "21223", "14111", "14100", "64409"]);
   assert.equal(body.aliases_by_noc["75101"].official_title, "Material handlers");
   assert.equal(body.aliases_by_noc["65102"].official_title, "Store shelf stockers, clerks and order fillers");
   assert.match(body.match_guidance.when_not_configured, /Do not run a search/);
   assert.match(body.match_guidance.when_explicit_empty, /zero NOC/);
-  assert.equal(body.catalogue.roles.length, 8);
+  assert.equal(body.catalogue.roles.length, 16);
+  assert.equal(body.aliases_by_noc["22221"].official_title, "User support technicians");
+  assert.ok(body.aliases_by_noc["22221"].also_called.includes("Email support technician"));
+  assert.equal(body.catalogue.roles.find((role) => role.noc === "21234").fit_tier, "portfolio or further training");
+  assert.equal(body.catalogue.roles.filter((role) => role.fit_tier).every((role) => role.noc !== "62010"), true);
+});
+
+test("an existing saved selection is not rewritten when the catalogue grows", async () => {
+  const stored = JSON.stringify({
+    version: 1,
+    configured: true,
+    nocs: ["13100", "22221"],
+    updated_at: "2026-11-07T12:00:00.000Z",
+    selection_meaning: "search_only_these_nocs",
+    empty_means: "no_searches"
+  });
+  const kv = createKv({ data: DATA, [PREF]: stored });
+  const body = await readJson(await call(testEnv(kv), "/api/preferences"));
+  assert.deepEqual(body.nocs, ["13100", "22221"]);
+  assert.equal(body.updated_at, "2026-11-07T12:00:00.000Z");
+  assert.equal(body.configured, true);
+  assert.equal(kv.store.get(PREF), stored);
+  assert.equal(kv.store.get("data"), DATA);
+});
+
+test("new catalogue codes can be saved without becoming the default", async () => {
+  const { kv, env } = await seeded();
+  const before = await readJson(await call(env, "/api/preferences"));
+  assert.equal(before.configured, false);
+  const saved = await readJson(await call(env, "/api/preferences", {
+    method: "PUT",
+    headers: browser,
+    body: { nocs: ["14111", "21234"] }
+  }));
+  assert.deepEqual(saved.nocs, ["21234", "14111"]);
+  assert.equal(saved.selection_meaning, "search_only_these_nocs");
+  assert.equal(saved.nocs.includes("64409"), false);
+  const again = await readJson(await call(env, "/api/preferences"));
+  assert.deepEqual(again.nocs, ["21234", "14111"]);
+  assert.equal(kv.store.get("data"), DATA);
 });
 
 test("save, reload, other device, empty selection, and data sync", async () => {

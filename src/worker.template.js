@@ -76,7 +76,7 @@ function matchGuidance() {
     aliases_are: "hints_to_map_a_posting_onto_a_noc_when_the_posting_has_no_code",
     do_not: "Require an exact job-title match, or treat an alias or NOC hit as enough when the duties are excluded.",
     exclusions_always_apply: CATALOGUE.exclusions,
-    when_not_configured: "Do not run a search. Do not substitute all eight NOCs or invent a selection.",
+    when_not_configured: "Do not run a search. Do not substitute every catalogue NOC or invent a selection.",
     when_unreadable: "Do not run a search. Do not treat the value as empty and do not treat it as all roles.",
     when_explicit_empty: "Search zero NOC groups. Do not fall back to all roles.",
     when_saved: "Search only the nocs array, then drop postings whose duties hit the exclusions.",
