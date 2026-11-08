@@ -176,8 +176,11 @@ function init(){
  if(META.synthetic){$('fixtureBanner').hidden=false;$('fixtureBanner').textContent=(META.note||'Synthetic example data.')+' Interests saved in this preview stay in this preview only.'}
  const opts=(arr,el,lab)=>{[...new Set(arr.filter(Boolean))].sort().forEach(v=>el.insertAdjacentHTML('beforeend',`<option value="${esc(v)}">${esc(lab?lab(v):v)}</option>`))};
  opts(D.map(j=>j.province),$('fProv'));
- const nocName={};D.forEach(j=>{if(j.noc)nocName[j.noc]=(j.occupation||'').replace(/^\d+\s*/,'')});
- opts(D.map(j=>j.noc),$('fNoc'),v=>v+(nocName[v]?' – '+nocName[v]:''));
+ const nocName={};
+ ((serverPrefs.catalogue||{}).roles||[]).forEach(role=>{if(role&&role.noc)nocName[String(role.noc)]=role.official_title||role.display_title||''});
+ D.forEach(j=>{if(j.noc&&!nocName[j.noc])nocName[j.noc]=(j.occupation||'').replace(/^\d+\s*/,'')});
+ const nocs=[...new Set([...((serverPrefs.catalogue||{}).roles||[]).map(role=>role&&String(role.noc||'')),...D.map(j=>j.noc)].filter(Boolean))].sort();
+ $('fNoc').innerHTML='<option value="">All NOC</option>'+nocs.map(v=>`<option value="${esc(v)}">${esc(v+(nocName[v]?' – '+nocName[v]:''))}</option>`).join('');
  const ds=[...new Set(D.map(j=>j.date_found).filter(Boolean))].sort().reverse();
  $('fDate').innerHTML='<option value="">All dates found</option>'+ds.map(d=>`<option value="${d}">Found ${fd(d)}</option>`).join('');
  ['q','fDate','fStatus','fProv','fNoc','fLmia','fSort'].forEach(id=>$(id).addEventListener('input',render));
